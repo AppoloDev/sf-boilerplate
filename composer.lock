@@ -4,21 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c0517b22daffb1e0859bdc2df31a892",
+    "content-hash": "e8dad8d85b7bdd73f734f60c81da4d2f",
     "packages": [
         {
             "name": "appolodev/sf-toolbox",
-            "version": "1.1.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/AppoloDev/sf-toolbox.git",
-                "reference": "bffa31d19a190a5b363019424b6e3a3483c27149"
-            },
+            "version": "dev-develop",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/AppoloDev/sf-toolbox/zipball/bffa31d19a190a5b363019424b6e3a3483c27149",
-                "reference": "bffa31d19a190a5b363019424b6e3a3483c27149",
-                "shasum": ""
+                "type": "path",
+                "url": "./bundles/sf-toolbox",
+                "reference": "bffa31d19a190a5b363019424b6e3a3483c27149"
             },
             "require": {
                 "doctrine/orm": "^2.9",
@@ -32,10 +26,9 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "AppoloDev\\SFToolbox\\": "src/"
+                    "AppoloDev\\SFToolboxBundle\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -46,11 +39,9 @@
                 }
             ],
             "description": "Toolbox for Symfony",
-            "support": {
-                "issues": "https://github.com/AppoloDev/sf-toolbox/issues",
-                "source": "https://github.com/AppoloDev/sf-toolbox/tree/1.1.13"
-            },
-            "time": "2022-12-08T08:25:26+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "doctrine/annotations",
@@ -11605,8 +11596,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "appolodev/sf-toolbox": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

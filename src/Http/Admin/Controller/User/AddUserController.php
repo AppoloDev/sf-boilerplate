@@ -13,8 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: 'utilisateur/ajouter', name: 'user_add')]
+#[IsGranted(UserVoter::ADD)]
 class AddUserController extends AbstractController
 {
     public function __invoke(
@@ -23,8 +25,6 @@ class AddUserController extends AbstractController
         UserManager $userManager,
         MessageBusInterface $messageBus
     ): Response {
-        $this->denyAccessUnlessGranted(UserVoter::ADD);
-
         $user = (new User());
 
         $form = $this->createForm(UserFormType::class, $user);

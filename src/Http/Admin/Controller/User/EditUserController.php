@@ -10,8 +10,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: 'utilisateur/{id}/modifier', name: 'user_edit')]
+#[IsGranted(UserVoter::EDIT, 'user')]
 class EditUserController extends AbstractController
 {
     public function __invoke(
@@ -19,8 +21,6 @@ class EditUserController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
     ): Response {
-        $this->denyAccessUnlessGranted(UserVoter::EDIT, $user);
-
         $form = $this->createForm(UserFormType::class, $user);
 
         $form->handleRequest($request);

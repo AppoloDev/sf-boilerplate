@@ -3,7 +3,7 @@
 namespace App\Http\Admin\Voter;
 
 use App\Domain\User\Entity\User;
-use AppoloDev\SFToolbox\Doctrine\Entity\Concern\BlockableInterface;
+use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\BlockableInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 class UserVoter extends AbstractVoter

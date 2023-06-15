@@ -3,13 +3,13 @@
 namespace App\Domain\User\Entity;
 
 use App\Domain\User\Repository\UserRepository;
-use AppoloDev\SFToolbox\Doctrine\Entity\Concern\Authenticable;
-use AppoloDev\SFToolbox\Doctrine\Entity\Concern\Blockable;
-use AppoloDev\SFToolbox\Doctrine\Entity\Concern\BlockableInterface;
-use AppoloDev\SFToolbox\Doctrine\Entity\Concern\Deletable;
-use AppoloDev\SFToolbox\Doctrine\Entity\Concern\DeletableInterface;
-use AppoloDev\SFToolbox\Doctrine\Entity\Concern\Identifiable;
-use AppoloDev\SFToolbox\Doctrine\Entity\Concern\Timestampable;
+use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\Authenticable;
+use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\Blockable;
+use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\BlockableInterface;
+use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\Deletable;
+use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\DeletableInterface;
+use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\Identifiable;
+use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\Timestampable;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;

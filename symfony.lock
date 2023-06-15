@@ -1,4 +1,7 @@
 {
+    "appolodev/sf-toolbox": {
+        "version": "dev-develop"
+    },
     "doctrine/annotations": {
         "version": "2.0",
         "recipe": {

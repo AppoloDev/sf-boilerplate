@@ -9,8 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: 'utilisateurs', name: 'user_list')]
+#[IsGranted(UserVoter::LIST)]
 class ListUserController extends AbstractController
 {
     public function __invoke(
@@ -18,8 +20,6 @@ class ListUserController extends AbstractController
         UserRepository $userRepository,
         PaginatorInterface $paginator,
     ): Response {
-        $this->denyAccessUnlessGranted(UserVoter::LIST);
-
         $pagination = $paginator->paginate(
             $userRepository
                 ->getQB()

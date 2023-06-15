@@ -8,14 +8,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: 'utilisateur/{id}/debloquer', name: 'user_unblock')]
+#[IsGranted(UserVoter::UNBLOCK, 'user')]
 class UnblockUserController extends AbstractController
 {
     public function __invoke(User $user, EntityManagerInterface $entityManager): Response
     {
-        $this->denyAccessUnlessGranted(UserVoter::UNBLOCK, $user);
-
         $user->setBlocked(false);
         $entityManager->flush();
 

@@ -8,14 +8,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route(path: 'utilisateur/{id}/bloquer', name: 'user_block')]
+#[IsGranted(UserVoter::BLOCK, 'user')]
 class BlockUserController extends AbstractController
 {
     public function __invoke(User $user, EntityManagerInterface $entityManager): Response
     {
-        $this->denyAccessUnlessGranted(UserVoter::BLOCK, $user);
-
         $user->setBlocked(true);
         $entityManager->flush();
 

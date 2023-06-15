@@ -1,0 +1,24 @@
+{% extends '@SFToolbox/layouts/auth.html.twig' %}
+
+{% block title %}Connectez-vous{% endblock %}
+
+{% block body %}
+    {{ form_start(form, {attr: {class: 'space-y-4 md:space-y-6'}}) }}
+    {% if error is defined and error is not null %}
+        {{ component('alert', {
+            type: 'danger',
+            message: error.messageKey|trans(error.messageData, 'security')
+        }) }}
+    {% endif %}
+
+    {{ form_row(form.email) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form.submit, {'attr': {'class': 'w-full'}}) }}
+
+
+    <p class="text-center text-sm font-medium text-primary-600 hover:underline">
+        <a href="{{ path('auth_forgot_password') }}" class="text-sm font-medium text-primary-600 hover:underline">Mot de passe oublié ?</a>
+    </p>
+
+    {{ form_end(form) }}
+{% endblock %}
