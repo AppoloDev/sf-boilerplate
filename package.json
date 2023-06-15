@@ -5,8 +5,19 @@
         "build": "vite build"
     },
     "license": "UNLICENSED",
+    "dependencies": {
+        "sweetalert2": "^11.7.12",
+        "tippy.js": "^6.3.7",
+        "tom-select": "^2.2.2"
+    },
     "devDependencies": {
+        "autoprefixer": "^10.4.14",
+        "postcss": "^8.4.24",
+        "preline": "^1.9.0",
+        "sass": "^1.63.4",
+        "tailwindcss": "^3.3.2",
         "vite": "^4.0",
+        "vite-plugin-mkcert": "^1.15.0",
         "vite-plugin-symfony": "^0.7.2"
     }
 }

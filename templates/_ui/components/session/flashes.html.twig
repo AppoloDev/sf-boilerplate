@@ -1,0 +1,8 @@
+{% for type, messages in flashes %}
+    {% for message in messages %}
+        {{ component('toast', {
+            message: message,
+            type: type,
+        }) }}
+    {% endfor %}
+{% endfor %}

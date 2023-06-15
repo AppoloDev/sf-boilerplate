@@ -1,0 +1,26 @@
+{% if form[submitField] is defined %}
+    <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
+        <div class='flex'>
+            {{ form_widget(form[submitField]) }}
+
+            <button type="reset" class="ml-4 py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-teal-600 transition-all text-sm">
+                Réinitialiser
+            </button>
+        </div>
+        {% if deletePath %}
+            <div class="mt-4 lg:mt-0">
+                {% if swal.title is defined %}
+                    <sweet-alert title="{{ swal.title }}" text="{{ swal.text }}" type="{{ swal.type }}">
+                        <a href="{{ deletePath is not null ? deletePath : '#' }}" class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm">
+                            Supprimer ?
+                        </a>
+                    </sweet-alert>
+                {% else %}
+                    <a href="{{ deletePath is not null ? deletePath : '#' }}" class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm">
+                        Supprimer ?
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+{% endif %}

@@ -1,5 +1,11 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
+auth:
+    resource: ../src/Http/Auth/Controller/
+    type: annotation
+    prefix: /authentification
+    name_prefix: auth_
+
+admin:
+    resource: ../src/Http/Admin/Controller/
+    type: annotation
+    name_prefix: admin_
+    prefix: administration

@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "39ae259fb2f2df43356459245ba3b1e4",
+    "content-hash": "3c0517b22daffb1e0859bdc2df31a892",
     "packages": [
+        {
+            "name": "appolodev/sf-toolbox",
+            "version": "1.1.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AppoloDev/sf-toolbox.git",
+                "reference": "bffa31d19a190a5b363019424b6e3a3483c27149"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AppoloDev/sf-toolbox/zipball/bffa31d19a190a5b363019424b6e3a3483c27149",
+                "reference": "bffa31d19a190a5b363019424b6e3a3483c27149",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": "^2.9",
+                "ext-intl": "*",
+                "php": ">=8.0",
+                "symfony/doctrine-bridge": "^5.3|^6.0",
+                "symfony/serializer": "^5.3|^6.0",
+                "symfony/uid": "^5.3|^6.0",
+                "twig/twig": "^2.12|^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AppoloDev\\SFToolbox\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fredxd",
+                    "email": "frederic@appolo.fr"
+                }
+            ],
+            "description": "Toolbox for Symfony",
+            "support": {
+                "issues": "https://github.com/AppoloDev/sf-toolbox/issues",
+                "source": "https://github.com/AppoloDev/sf-toolbox/tree/1.1.13"
+            },
+            "time": "2022-12-08T08:25:26+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "2.0.1",
