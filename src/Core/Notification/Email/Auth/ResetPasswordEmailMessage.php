@@ -4,9 +4,8 @@ namespace App\Core\Notification\Email\Auth;
 
 use App\Domain\User\Entity\User;
 use AppoloDev\SFToolboxBundle\Message\EmailMessage;
-use Symfony\Component\Mailer\Messenger\SendEmailMessage;
 
-class ResetPasswordEmailMessage extends SendEmailMessage
+class ResetPasswordEmailMessage extends EmailMessage
 {
     private string $object = 'Réinitialisez votre mot de passe pour votre compte 🔒';
 
@@ -14,7 +13,7 @@ class ResetPasswordEmailMessage extends SendEmailMessage
 
     public function __construct(User $user)
     {
-        $message = new EmailMessage(
+        parent::__construct(
             [$user->getEmail()],
             $this->object,
             $this->template,
@@ -23,7 +22,5 @@ class ResetPasswordEmailMessage extends SendEmailMessage
                 'firstname' => $user->getFirstname(),
             ]
         );
-
-        parent::__construct($message);
     }
 }
