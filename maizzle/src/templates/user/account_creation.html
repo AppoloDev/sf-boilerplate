@@ -1,0 +1,54 @@
+---
+title: "Bienvenue 🎉"
+preheader: "Bienvenue 🎉"
+bodyClass: bg-slate-50
+---
+
+<x-main>
+  <div class="bg-slate-50 sm:px-4 font-sans">
+    <table align="center">
+      <tr>
+        <td class="w-[552px] max-w-full">
+          <div class="my-12 sm:my-8 text-center">
+              <a href="{{ url('auth_login') }}">
+                <img src="cid:logo" width="100" alt="Logo">
+              </a>
+          </div>
+
+          <table class="w-full">
+            <tr>
+              <td class="p-12 sm:px-6 text-base text-slate-700 bg-white rounded shadow-sm">
+                <h1 class="m-0 mb-6 text-2xl sm:leading-8 text-black font-semibold">
+                  Bonjour {{firstname}},
+                </h1>
+
+                <p class="m-0 leading-6">
+                  Pour activer votre compte sur
+                  <a href="{{ url('auth_login') }}">{{ site_title }}</a>
+                  , cliquez sur le lien ci-dessous. Vous serez invité à créer un mot de passe.
+                </p>
+
+                <x-spacer height="24px"/>
+
+                <raw> {% set link = url('auth_create_password', {token: confirmationToken}) %}</raw>
+
+                <x-button href="{{ link }}">
+                    Activer votre compte &rarr;
+                  </x-button>
+
+                <x-divider space-y="32px" class="bg-slate-200"/>
+
+                <p class="m-0">
+                  À bientôt.
+                </p>
+              </td>
+            </tr>
+            <tr role="separator">
+              <td class="leading-12">&zwj;</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+</x-main>

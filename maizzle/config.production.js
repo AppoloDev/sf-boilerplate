@@ -13,9 +13,16 @@ module.exports = {
   build: {
     templates: {
       destination: {
-        path: 'build_production',
+        path: '../templates/_emails',
+        extension: 'html.twig'
       },
     },
+    posthtml: {
+      expressions: {
+        delimiters: ['[[', ']]'],
+        unescapeDelimiters: ['[[[', ']]]']
+      }
+    }
   },
   inlineCSS: true,
   removeUnusedCSS: true,

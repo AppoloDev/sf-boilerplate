@@ -13,3 +13,9 @@ schema:
 .PHONY: create-user
 create-user:
 	php bin/console user:create
+.PHONY: maizzle-dev
+maizzle-dev:
+	cd ./maizzle && pnpm dev
+.PHONY: maizzle-build
+maizzle-build:
+	cd ./maizzle && pnpm build

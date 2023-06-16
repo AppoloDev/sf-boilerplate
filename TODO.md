@@ -4,7 +4,6 @@
 - [ ] Finir la gestion de l’utilisateur
     - [ ] Google authenticator : Afficher le bouton et accéder au service uniquement si c'est configurer
 - [ ] Components UI : Faire le trie dans les components et refactor
-- [ ] Ajouter Maizzle ?
 - [ ] Lancer un fix et un lint
 
 # A faire dans le bundle
