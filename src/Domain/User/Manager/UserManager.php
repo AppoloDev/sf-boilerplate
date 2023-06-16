@@ -32,7 +32,7 @@ class UserManager
     public function generateConfirmationToken(User $user): self
     {
         $user
-            ->setConfirmationToken(str_replace('-', '', (string)Uuid::v4()))
+            ->setConfirmationToken(str_replace('-', '', (string) Uuid::v4()))
             ->setConfirmationTokenExpiredAt((new \DateTimeImmutable())->add(new \DateInterval('P1D')));
 
         return $this;
@@ -41,7 +41,7 @@ class UserManager
     public function anonymize(User $user): self
     {
         $user
-            ->setEmail(uniqid() . '@anonymize.local')
+            ->setEmail(uniqid().'@anonymize.local')
             ->setDeleted(true);
 
         return $this;

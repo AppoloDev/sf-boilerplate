@@ -10,7 +10,6 @@ use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\Deletable;
 use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\DeletableInterface;
 use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\Identifiable;
 use AppoloDev\SFToolboxBundle\Doctrine\Entity\Concern\Timestampable;
-use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -36,7 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Equatab
     private string $lastname;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?DateTimeInterface $lastLogin = null;
+    private ?\DateTimeInterface $lastLogin = null;
 
     public function __construct()
     {
@@ -70,12 +69,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Equatab
         return $this;
     }
 
-    public function getLastLogin(): ?DateTimeInterface
+    public function getLastLogin(): ?\DateTimeInterface
     {
         return $this->lastLogin;
     }
 
-    public function setLastLogin(?DateTimeInterface $lastLogin): self
+    public function setLastLogin(?\DateTimeInterface $lastLogin): self
     {
         $this->lastLogin = $lastLogin;
 

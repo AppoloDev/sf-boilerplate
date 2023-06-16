@@ -2,10 +2,9 @@
 
 namespace App\Core\Notification\Email\User;
 
-use App\Core\Notification\Message\EmailMessage;
 use App\Domain\User\Entity\User;
+use AppoloDev\SFToolboxBundle\Message\EmailMessage;
 
-// TODO : SendEmailMessage
 class AccountCreationEmailMessage extends EmailMessage
 {
     private string $object = 'Bienvenue 🎉';
@@ -15,7 +14,7 @@ class AccountCreationEmailMessage extends EmailMessage
     public function __construct(User $user)
     {
         parent::__construct(
-            $user->getEmail(),
+            [$user->getEmail()],
             $this->object,
             $this->template,
             [

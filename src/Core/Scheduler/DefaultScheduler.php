@@ -11,6 +11,6 @@ class DefaultScheduler implements ScheduleProviderInterface
 {
     public function getSchedule(): Schedule
     {
-        return (new Schedule());
+        return new Schedule();
     }
 }
