@@ -2,7 +2,6 @@
 
 - [ ] Que faire du docker-compose ? Garder celui de SF ? Garder le notre ?
 - [ ] Finir la gestion de l’utilisateur
-    - [ ] Login attempt
     - [ ] Google authenticator : Afficher le bouton et accéder au service uniquement si c'est configurer
 - [ ] Components UI : Faire le trie dans les components et refactor
 - [ ] Ajouter Maizzle ?
