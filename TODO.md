@@ -9,7 +9,6 @@
 # A faire dans le bundle
 
 - [ ] Command pour le Maker
-    - [ ] Créer des entity avec le bon domaine
     - [ ] Scaffold une entity: List, Export, Add, Edit, Delete
 - [ ] Créer les FormType suivants et les renommés
     - [ ] RadioCardType

@@ -21,5 +21,11 @@ module.exports = {
         destination: 'images',
       },
     },
+    posthtml: {
+      expressions: {
+        delimiters: ['[[', ']]'],
+        unescapeDelimiters: ['[[[', ']]]']
+      }
+    }
   },
 }
