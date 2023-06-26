@@ -2,8 +2,8 @@
 module.exports = {
     content: [
         './templates/**/*.twig',
-        'node_modules/preline/dist/*.js',
-        'vendor/appolodev/sf-toolbox/templates/**/*.twig',
+        './node_modules/preline/dist/*.js',
+        './vendor/appolodev/sf-toolbox/templates/**/*.twig',
     ],
     safelist: [
         {
