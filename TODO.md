@@ -7,23 +7,19 @@
 
 # A faire dans le bundle
 
-- [ ] Command pour le Maker
-    - [ ] Scaffold une entity: List, Export, Add, Edit, Delete
-- [ ] Créer les FormType suivants et les renommés
-    - [ ] RadioCardType
-    - [ ] SearchableEntityType
-- [ ] Extension Twig à importer si necessaire
-- [ ] Response à importer
-    - [ ] ZipResponse
-    - [ ] CsvResponse
-- [ ] Template twig pour le form theme: A refactor
-- [ ] Autoconfig du .env
-- [ ] Templates de Layout à faire
-    - [ ] Sidebar
-    - [ ] Navbar
-- Refactor les UI components
-- [ ] Lint
-- [ ] Fix
-- [ ] TODOS
-
+_ Finir le Scaffold 
+- Autoconfig du .env
+  - SENDER_EMAIL
+  - SENDER_NAME
+- Template layouts
+  - Sidebar
+  - Navbar
+- Refactor les components UI
+- Refactor les concern / Repo ?
 - Renomer dossier Doctrine en Domain ?
+- Geocomplete ?
+  - Concern
+  - FormType
+  - Validator
+- Lint / Fix 
+- Todos
