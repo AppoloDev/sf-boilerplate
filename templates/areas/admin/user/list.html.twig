@@ -3,15 +3,14 @@
 {% block title %}Liste des utilisateurs{% endblock %}
 
 {% block breadcrumb %}
-    {% with {items: [
+    {{ component('breadcrumb', {items: [
         {path: path('admin_dashboard'), label: 'Accueil'},
         {path: null, label: block('title')},
-    ]} %}
-        {{ block('breadcrumb', '_shared/blocks/breadcrumb.html.twig') }}
-    {% endwith %}
+    ]}) }}
 {% endblock %}
 
 {% block body %}
+        {# TODO: Remplacer par component
     {% embed '_shared/_layout/listing.html.twig' with {
         title: block('title'),
         pagination: pagination,
@@ -47,4 +46,5 @@
             {{ block('item', 'areas/admin/user/_list_item.html.twig') }}
         {% endblock %}
     {% endembed %}
+    #}
 {% endblock %}

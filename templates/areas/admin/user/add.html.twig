@@ -3,16 +3,15 @@
 {% block title %}Ajout d'un utilisateur{% endblock %}
 
 {% block breadcrumb %}
-    {% with {items: [
+    {{ component('breadcrumb', {items: [
         {path: path('admin_dashboard'), label: 'Accueil'},
         {path: path('admin_user_list'), label: 'Utilisateurs'},
         {path: null, label: block('title')},
-    ]} %}
-        {{ block('breadcrumb', '_shared/blocks/breadcrumb.html.twig') }}
-    {% endwith %}
+    ]}) }}
 {% endblock %}
 
 {% block body %}
+    {# TODO: Remplacer par component
     {% embed '_shared/_layout/form.html.twig' with {
         title: block('title'),
     } %}
@@ -20,4 +19,5 @@
             {% include 'areas/admin/user/_form.html.twig' %}
         {% endblock %}
     {% endembed %}
+    #}
 {% endblock %}

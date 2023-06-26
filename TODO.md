@@ -1,9 +1,10 @@
 # A faire dans le projet
 
 - [ ] Que faire du docker-compose ? Garder celui de SF ? Garder le notre ?
+- [ ] Créer un path @icons vide par défaut
 - [ ] Finir la gestion de l’utilisateur
     - [ ] Google authenticator : Afficher le bouton et accéder au service uniquement si c'est configurer
-- [ ] Components UI : Faire le trie dans les components et refactor
+- [ ] Components UI : refactor + Déplacer dans la toolbox et mettre un .gitkeep dans les dossier
 - [ ] Lancer un fix et un lint
 
 # A faire dans le bundle
@@ -25,3 +26,10 @@
 - [ ] Lint
 - [ ] Fix
 - [ ] TODOS
+
+- Register les components UI dans la toolbox
+- Ajouter un @SfToolboxIcons dans le bundle avec les icones principales
+- Ajouter abstractVoter dans la toolbox et faire extends celle ci dans les voter issue du scaffold
+- Remplacer bloc breadcrub du _shared pour mettre un component
+- Remplacer bloc listing du _shared pour mettre un component
+- Remplacer bloc form du _shared pour mettre un component

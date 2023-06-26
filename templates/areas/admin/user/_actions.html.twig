@@ -66,4 +66,35 @@
             </div>
         </div>
     {% endif %}
+
+    {#
+        TODO: Faire component dropdown
+    {{ component('dropdown', {
+        items: [
+            component('button_action', {
+                permission: is_granted('admin_user_delete', item),
+                path: path('admin_user_delete', {id: item.id}),
+                class: 'flex items-center gap-x-3 py-2 px-3 rounded-md text-sm hover:bg-gray-100 text-red-600',
+                labelAfter: 'Supprimer',
+                swal: {
+                    title: 'Supprimer cet utilisateur',
+                    text: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
+                    type: 'danger'
+                }
+            }),
+            component('dropdown_divier'),
+            component('button_action', {
+                permission: is_granted('admin_user_delete', item),
+                path: path('admin_user_delete', {id: item.id}),
+                class: 'flex items-center gap-x-3 py-2 px-3 rounded-md text-sm hover:bg-gray-100 text-red-600',
+                labelAfter: 'Supprimer',
+                swal: {
+                    title: 'Supprimer cet utilisateur',
+                    text: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
+                    type: 'danger'
+                }
+            }),
+    ]}
+    ) }}
+    #}
 {% endblock %}
