@@ -1,0 +1,23 @@
+{% extends '_layout/admin.html.twig' %}
+
+{% block title %}{{ user.firstname}} {{ user.lastname }}{% endblock %}
+
+{% block breadcrumb %}
+    {% with {items: [
+        {path: path('admin_dashboard'), label: 'Accueil'},
+        {path: path('admin_user_list'), label: 'Utilisateurs'},
+        {path: null, label: block('title')},
+    ]} %}
+        {{ block('breadcrumb', '_shared/blocks/breadcrumb.html.twig') }}
+    {% endwith %}
+{% endblock %}
+
+{% block body %}
+    {% embed '_shared/_layout/form.html.twig' with {
+        title: block('title'),
+    } %}
+        {% block formRender %}
+            {% include 'areas/admin/user/_form.html.twig' %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

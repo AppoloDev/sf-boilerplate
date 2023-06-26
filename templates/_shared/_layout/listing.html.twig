@@ -1,0 +1,125 @@
+<div class="flex flex-col">
+    <div class="min-w-full inline-block align-middle">
+        <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            {% block header %}
+                <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-gray-200">
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-800">
+                            {{ title|raw }}
+                        </h2>
+                    </div>
+
+                    <div>
+                        <div class="inline-flex gap-x-2">
+                            {% block actions %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+
+            {% block search %}
+                <form>
+                    <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center">
+                        <div class="relative">
+                            <input type="text"
+                                   value="{{ app.request.query.get('q') }}"
+                                   name="q"
+                                   class="py-2 px-3 pl-11  border border-gray-200 rounded-md text-sm focus:outline-none w-full sm:w-auto"
+                                   placeholder="Votre recherche…"/>
+
+                            {% if block('extraFields') is defined %}
+                                {{ block('extraFields') }}
+                            {% endif %}
+
+                            <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none pl-4">
+                                <div class="h-4 w-4 text-gray-400">
+                                    {{ source('@icons/search.svg') }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between sm:justify-end items-center gap-x-2">
+                            {% set routeParams = {'_reset': true} %}
+                            {% if app.request.attributes.get('_route_params') is not empty %}
+                                {% set routeParams = routeParams|merge(app.request.attributes.get('_route_params')) %}
+                            {% endif %}
+                            <a href="{{ path(app.request.attributes.get('_route'), routeParams) }}"
+                               class="mr-4 underline">
+                                Réinitialiser
+                            </a>
+                            <button class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-teal-500 text-white hover:bg-teal-600 transition-all text-sm">
+                                Rechercher
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            {% endblock %}
+
+            {% block table %}
+                {% if pagination is not empty %}
+                    <div class="overflow-x-auto border-t border-gray-200">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            {% block thead %}
+                                {% if columns is defined %}
+                                    <thead class="bg-gray-50">
+                                    <tr>
+                                        {% for column in columns %}
+                                            {% if loop.first %}
+                                                {% set textPosition = 'text-left' %}
+                                            {% elseif loop.last %}
+                                                {% set textPosition = 'text-right' %}
+                                            {% else %}
+                                                {% set textPosition = 'text-center' %}
+                                            {% endif %}
+
+                                            <th scope="col" class="px-6 py-3 {{ textPosition }} whitespace-nowrap">
+                                                {% if 'sortable' in column or 'asc' in column or 'desc' in column %}
+                                                    {{ column|raw }}
+                                                {% else %}
+                                                    <span class="text-xs font-semibold uppercase tracking-wide text-gray-800"> {{ column|raw }}</span>
+                                                {% endif %}
+                                            </th>
+                                        {% endfor %}
+                                    </tr>
+                                    </thead>
+                                {% endif %}
+                            {% endblock %}
+
+                            {% block tbody %}
+                                <tbody class="divide-y divide-gray-200">
+                                {% for item in pagination %}
+                                    {% block itemRender %}{% endblock %}
+                                {% endfor %}
+                                </tbody>
+                            {% endblock %}
+                        </table>
+                    </div>
+                {% else %}
+                    {% block emptyList %}
+                        {{ component('list_empty', {
+                            text: emptyText
+                        }) }}
+                    {% endblock %}
+                {% endif %}
+            {% endblock %}
+
+            {% block footer %}
+                <div class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-gray-200">
+                    <div>
+                        <p class="text-sm text-gray-600">
+                            <span class="font-semibold text-gray-800">{{ pagination.totalItemCount }}</span>
+                            résultat{{ pagination.totalItemCount > 1 ? 's' : '' }}
+                        </p>
+                    </div>
+
+                    <div>
+                        {% if pagination.pageCount > 1 %}
+                            {{ knp_pagination_render(pagination) }}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+
+</div>
