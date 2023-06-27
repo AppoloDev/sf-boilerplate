@@ -5,7 +5,7 @@ module.exports = {
         './node_modules/preline/dist/*.js',
         './vendor/appolodev/sf-toolbox/templates/**/*.twig',
     ],
-    safelist: [
+    /*safelist: [
         {
             pattern: /bg-(gray|brown|yellow|cyan|neutral|red|green|orange|purple|pink)-(50|100|200|800)/,
         },
@@ -13,7 +13,7 @@ module.exports = {
             pattern: /border-(red|green|orange)-(200)/,
         },
         {
-            pattern: /text-(gray|brown|yellow|cyan|neutral|red|green|orange|purple|pink)-(50|200|500|600|800)/,
+            pattern: /text-(gray|brown|yellow|cyan|neutral|red|green|orange|purple|pink)-(50|200|500|600|700|800)/,
         },
         'self-start',
         'hidden',
@@ -22,7 +22,7 @@ module.exports = {
         'md:text-4xl',
         'font-extrabold',
         'cursor-default'
-    ],
+    ],*/
     plugins: [
         require('preline/plugin'),
     ],

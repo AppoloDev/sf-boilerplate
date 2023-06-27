@@ -14,10 +14,10 @@
         <td class="h-px w-px whitespace-nowrap">
             <div class="px-6 py-3 flex flex-col items-center">
                 <div class="block text-sm font-semibold text-gray-800">{{ item.email }}</div>
-                <div class="block text-sm text-gray-500">
+                <div class="block">
                     {% for role in item.roles %}
                         {% if role is same as('ROLE_ADMIN') %}
-                            {{ component('badge', {label: 'Admin', color: 'teal'}) }}
+                            {{ component('badge', {label: 'Admin', color: 'indigo'}) }}
                         {% elseif role is same as('ROLE_MANAGER') %}
                             {{ component('badge', {label: 'Gestionnaire', color: 'teal'}) }}
                         {% endif %}

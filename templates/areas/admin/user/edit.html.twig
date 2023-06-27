@@ -11,13 +11,11 @@
 {% endblock %}
 
 {% block body %}
-        {# TODO: Remplacer par component
-    {% embed '_shared/_layout/form.html.twig' with {
-        title: block('title'),
+    {% component form_layout with {
+        headerTitle: block('title'),
     } %}
-        {% block formRender %}
+        {% block form_render %}
             {% include 'areas/admin/user/_form.html.twig' %}
         {% endblock %}
-    {% endembed %}
-    #}
+    {% endcomponent %}
 {% endblock %}

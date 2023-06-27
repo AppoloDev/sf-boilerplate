@@ -2,8 +2,6 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     paths:
         '%kernel.project_dir%/public/icons': icons
-    globals:
-        site_title: '%env(SITE_TITLE)%' #TODO: Déplacer dans bundle
 when@test:
     twig:
         strict_variables: true

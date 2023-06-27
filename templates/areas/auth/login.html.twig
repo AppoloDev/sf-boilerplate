@@ -13,12 +13,18 @@
 
     {{ form_row(form.email) }}
     {{ form_row(form.password) }}
-    {{ form_row(form.submit, {'attr': {'class': 'w-full'}}) }}
 
+    <div class="space-y-2">
+        {{ form_row(form.submit, {'attr': {'class': 'w-full'}}) }}
 
-    <p class="text-center text-sm font-medium text-primary-600 hover:underline">
-        <a href="{{ path('auth_forgot_password') }}" class="text-sm font-medium text-primary-600 hover:underline">Mot de passe oublié ?</a>
-    </p>
+        {{ component('button_link', {
+            link: path('auth_forgot_password'),
+            label: 'Mot de passe oublié ?',
+            mode: 'ghost',
+            color: themeColor,
+            block: true
+        }) }}
+    </div>
 
     {{ form_end(form) }}
 {% endblock %}

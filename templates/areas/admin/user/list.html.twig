@@ -10,41 +10,42 @@
 {% endblock %}
 
 {% block body %}
-        {# TODO: Remplacer par component
-    {% embed '_shared/_layout/listing.html.twig' with {
-        title: block('title'),
-        pagination: pagination,
-        emptyText: 'Essayez d\'ajouter un nouvel utilisateur.',
-        columns: [
+    {% component table_list with {
+        headerTitle: block('title'),
+        tableColumns: [
             knp_pagination_sortable(pagination, 'Nom', 'u.firstname'),
             knp_pagination_sortable(pagination, 'Email', 'u.email'),
             knp_pagination_sortable(pagination, 'Statut', 'u.blocked'),
             ''
-        ]
+        ],
+        pagination: pagination,
+        emptyText: 'Essayez d\'ajouter un nouvel utilisateur.',
     } %}
-        {% block actions %}
+        {% block header_actions %}
             <div class="flex gap-4 items-center">
-                {{ component('button_action', {
-                    permission: is_granted('admin_user_export'),
-                    path: path('admin_user_export'),
-                    class: 'py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-teal-500 text-white hover:bg-teal-600 transition-all text-sm',
-                    labelAfter: 'Exporter',
-                    icon: source('@icons/download.svg'),
-                }) }}
+                {% if is_granted('admin_user_export') %}
+                    {{ component('button_link', {
+                        link: path('admin_user_export'),
+                        label: 'Exporter',
+                        color: themeColor,
+                        mode: 'ghost',
+                        icon: source('@SFToolbox/icons/download.svg'),
+                    }) }}
+                {% endif %}
 
-                {{ component('button_action', {
-                    permission: is_granted('admin_user_add'),
-                    path: path('admin_user_add'),
-                    class: 'py-2 px-3 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-teal-500 text-white hover:bg-teal-600 transition-all text-sm',
-                    labelAfter: 'Ajouter',
-                    icon: source('@icons/plus.svg'),
-                }) }}
+                {% if is_granted('admin_user_add') %}
+                    {{ component('button_link', {
+                        link: path('admin_user_add'),
+                        label: 'Ajouter',
+                        color: themeColor,
+                        icon: source('@SFToolbox/icons/plus.svg')
+                    }) }}
+                {% endif %}
             </div>
         {% endblock %}
 
-        {% block itemRender %}
+        {% block table_item %}
             {{ block('item', 'areas/admin/user/_list_item.html.twig') }}
         {% endblock %}
-    {% endembed %}
-    #}
+    {% endcomponent %}
 {% endblock %}

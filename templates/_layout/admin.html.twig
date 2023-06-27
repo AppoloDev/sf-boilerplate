@@ -1,29 +1,8 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{% block title %}{% endblock %} — {{ site_title }}</title>
+{% extends '@SFToolbox/layouts/navbar.html.twig' %}
 
-    {{ vite_entry_link_tags('admin') }}
-    {% block stylesheets %}{% endblock %}
-</head>
-<body class="bg-gray-50">
-
-{% include '_layout/admin/nav.html.twig' %}
-
-<div class="container mx-auto px-4 sm:px-6 lg:px-8">
-    {% block breadcrumb %}{% endblock %}
-    {% block body %}{% endblock %}
-</div>
-
-{{ component('flashes', {
-    flashes: app.flashes,
-}) }}
-
-{{ vite_entry_script_tags('admin') }}
-{% block javascripts %}{% endblock %}
-</body>
-</html>
+{% block navbar_menu %}
+    {% if is_granted('admin_user_list') %}
+        <a class="font-medium text-white sm:py-6" href="{{ path('admin_user_list') }}"
+           aria-current="page">Utilisateurs</a>
+    {% endif %}
+{% endblock %}
