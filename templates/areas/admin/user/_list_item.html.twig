@@ -19,7 +19,7 @@
                         {% if role is same as('ROLE_ADMIN') %}
                             {{ component('badge', {label: 'Admin', color: 'indigo'}) }}
                         {% elseif role is same as('ROLE_MANAGER') %}
-                            {{ component('badge', {label: 'Gestionnaire', color: 'teal'}) }}
+                            {{ component('badge', {label: 'Gestionnaire', color: 'orange'}) }}
                         {% endif %}
                     {% endfor %}
                 </div>

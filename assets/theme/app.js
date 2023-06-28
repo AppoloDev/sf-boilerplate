@@ -1,5 +1,6 @@
 import "./scss/app.scss";
 
-import './js/components/sweetalert/sweetalert';
-import './js/components/toast/toast';
+import 'preline';
+import "../../vendor/appolodev/sf-toolbox/assets/app.js";
+
 import './js/components/tomselect/tomselect';

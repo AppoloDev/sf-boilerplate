@@ -1,102 +1,74 @@
 {% block actions %}
-    {# TODO: Dropdown component #}
     {% if
         is_granted('admin_user_edit', item) or
         is_granted('admin_user_block', user) or
         is_granted('admin_user_unblock', user) or
-        is_granted('admin_user_delete', item)
-    %}
+        is_granted('admin_user_delete', item) %}
         <div class="px-6 py-2">
-            <div class="hs-dropdown relative inline-block [--placement:bottom-right]">
-                {# TODO: Button component ? #}
-                <button id="hs-table-dropdown-6" type="button"
-                        class="hs-dropdown-toggle py-1.5 px-2 inline-flex justify-center items-center gap-2 rounded-md text-gray-700 align-middle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-teal-600 transition-all text-sm">
-                    {{ source('@SFToolbox/icons/dots.svg') }}
-                </button>
-                <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden mt-2 divide-y divide-gray-200 min-w-[10rem] z-20 bg-white shadow-2xl rounded-lg p-2 mt-2"
-                     aria-labelledby="hs-table-dropdown-6">
-                    <div class="py-2 first:pt-0 last:pb-0">
-                                  <span class="block py-2 px-3 text-xs font-medium uppercase text-gray-400">
-                                    Actions
-                                  </span>
-                      {#   {{ component('button_action', {
-                            permission: is_granted('admin_user_edit', item),
-                            path: path('admin_user_add', {id: item.id}),
-                            labelAfter: 'Modifier'
-                        }) }}
-
-                        {{ component('button_action', {
-                            permission: is_granted('admin_user_block', item),
-                            path: path('admin_user_block', {id: item.id}),
-                            class: 'flex items-center gap-x-3 py-2 px-3 rounded-md text-sm hover:bg-gray-100 text-orange-600',
-                            labelAfter: 'Bloquer',
-                            swal: {
-                                title: 'Bloquer cet utilisateur',
-                                text: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
-                                type: 'warning'
-                            }
-                        }) }}
-
-                        {{ component('button_action', {
-                            permission: is_granted('admin_user_unblock', item),
-                            path: path('admin_user_unblock', {id: item.id}),
-                            class: 'flex items-center gap-x-3 py-2 px-3 rounded-md text-sm hover:bg-gray-100 text-orange-600',
-                            labelAfter: 'Débloquer',
-                            swal: {
-                                title: 'Débloquer cet utilisateur',
-                                text: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
-                                type: 'warning'
-                            }
-                        }) }}#}
-                    </div>
-                    {% if is_granted('admin_user_delete', item) %}
-                    <div class="py-2 first:pt-0 last:pb-0">
-                      {#   {{ component('button_action', {
-                            permission: is_granted('admin_user_delete', item),
-                            path: path('admin_user_delete', {id: item.id}),
-                            class: 'flex items-center gap-x-3 py-2 px-3 rounded-md text-sm hover:bg-gray-100 text-red-600',
-                            labelAfter: 'Supprimer',
-                            swal: {
-                                title: 'Supprimer cet utilisateur',
-                                text: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
-                                type: 'danger'
-                            }
-                        }) }}#}
-                    </div>
-                    {% endif %}
-                </div>
-            </div>
+            {{ component('dropdown_menu', {
+                headerLabel: 'Actions',
+                button: component('button', {
+                    icon: source('@SFToolbox/icons/ellipsis.svg'),
+                    mode: 'white',
+                    color: themeColor
+                }),
+                items: [
+                    component('dropdown_item_container', {
+                        allowDisplay: is_granted('admin_user_edit', item) or is_granted('admin_user_block', item) or is_granted('admin_user_unblock', item),
+                        items: [
+                            component('button_link', {
+                                allowDisplay: is_granted('admin_user_edit', item),
+                                link: path('admin_user_edit', {id: item.id}),
+                                label: 'Modifier',
+                                mode: 'ghost',
+                                block: true,
+                                size: 'small',
+                            }),
+                            component('button_link_sweetalert', {
+                                allowDisplay: is_granted('admin_user_block', item),
+                                link: path('admin_user_block', {id: item.id}),
+                                label: 'Bloquer',
+                                mode: 'ghost',
+                                block: true,
+                                size: 'small',
+                                color: 'orange',
+                                swalTitle: 'Bloquer cet utilisateur',
+                                swalText: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
+                                swalColor: 'orange'
+                            }),
+                            component('button_link_sweetalert', {
+                                allowDisplay: is_granted('admin_user_unblock', item),
+                                link: path('admin_user_unblock', {id: item.id}),
+                                label: 'Débloquer',
+                                mode: 'ghost',
+                                block: true,
+                                size: 'small',
+                                color: 'orange',
+                                swalTitle: 'Débloquer cet utilisateur',
+                                swalText: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
+                                swalColor: 'orange'
+                            })
+                        ]
+                    }),
+                    component('dropdown_item_container', {
+                        allowDisplay: is_granted('admin_user_delete', item),
+                        items: [
+                            component('button_link_sweetalert', {
+                                allowDisplay: is_granted('admin_user_delete', item),
+                                link: path('admin_user_delete', {id: item.id}),
+                                label: 'Supprimer',
+                                mode: 'ghost',
+                                block: true,
+                                size: 'small',
+                                color: 'red',
+                                swalTitle: 'Supprimer cet utilisateur',
+                                swalText: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
+                                swalColor: 'red'
+                            }),
+                        ]
+                    })
+                ]
+            }) }}
         </div>
     {% endif %}
-
-    {#
-        TODO: Faire component dropdown
-    {{ component('dropdown', {
-        items: [
-            component('button_action', {
-                permission: is_granted('admin_user_delete', item),
-                path: path('admin_user_delete', {id: item.id}),
-                class: 'flex items-center gap-x-3 py-2 px-3 rounded-md text-sm hover:bg-gray-100 text-red-600',
-                labelAfter: 'Supprimer',
-                swal: {
-                    title: 'Supprimer cet utilisateur',
-                    text: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
-                    type: 'danger'
-                }
-            }),
-            component('dropdown_divier'),
-            component('button_action', {
-                permission: is_granted('admin_user_delete', item),
-                path: path('admin_user_delete', {id: item.id}),
-                class: 'flex items-center gap-x-3 py-2 px-3 rounded-md text-sm hover:bg-gray-100 text-red-600',
-                labelAfter: 'Supprimer',
-                swal: {
-                    title: 'Supprimer cet utilisateur',
-                    text: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
-                    type: 'danger'
-                }
-            }),
-    ]}
-    ) }}
-    #}
 {% endblock %}

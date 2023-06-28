@@ -42,12 +42,10 @@
         <div class="pt-6 sm:pt-12">
             {{ component('form_submit', {
                 form: form,
-                deletePath: user is defined and is_granted('admin_user_delete', user) ? path('admin_user_delete', {id: user.id}) :null,
-                swal: {
-                title: 'Supprimer cet utilisateur',
-                text: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
-                type: 'danger'
-            }}) }}
+                deleteButtonLink: user is defined and is_granted('admin_user_delete', user) ? path('admin_user_delete', {id: user.id}) :null,
+                deleteSwalTitle: 'Supprimer cet utilisateur',
+                deleteSwalColor: 'red',
+            }) }}
         </div>
     </div>
 </div>

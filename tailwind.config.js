@@ -5,6 +5,10 @@ module.exports = {
         './node_modules/preline/dist/*.js',
         './vendor/appolodev/sf-toolbox/templates/**/*.twig',
     ],
+    safelist: [
+        'bg-teal-500',
+        'text-teal-500'
+    ],
     /*safelist: [
         {
             pattern: /bg-(gray|brown|yellow|cyan|neutral|red|green|orange|purple|pink)-(50|100|200|800)/,
