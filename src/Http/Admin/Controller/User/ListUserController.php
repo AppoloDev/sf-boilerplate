@@ -27,7 +27,7 @@ class ListUserController extends AbstractController
                 ->order('updatedAt', 'DESC')
                 ->getBuilder(),
             $request->query->getInt('page', 1),
-            1,
+            12,
             [
                 'defaultSortFieldName' => 'u.updatedAt',
                 'defaultSortDirection' => 'desc',

@@ -2,6 +2,7 @@
 
 namespace App\Core\Security;
 
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,11 +22,10 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
     final public const LOGIN_ROUTE = 'auth_login';
 
-    private readonly UrlGeneratorInterface $urlGenerator;
-
-    public function __construct(UrlGeneratorInterface $urlGenerator)
-    {
-        $this->urlGenerator = $urlGenerator;
+    public function __construct(
+        private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly Security $security
+    ) {
     }
 
     public function authenticate(Request $request): Passport
@@ -48,8 +48,11 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        if($this->security->isGranted('ROLE_ADMIN')) {
+            return new RedirectResponse($this->urlGenerator->generate('admin_dashboard'));
+        }
+
         // TODO: Implement redirection
-        return new RedirectResponse($this->urlGenerator->generate('endpoint_redirect'));
     }
 
     protected function getLoginUrl(Request $request): string

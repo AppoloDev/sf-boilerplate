@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 
@@ -45,7 +46,10 @@ class UserFormType extends AbstractType
                 'empty_data' => '',
                 'constraints' => [
                     new NotBlank(),
+                    new Email()
                 ],
+                'help' => 'L\'email sera <strong>utilisé</strong> comme identifiant pour se connecter',
+                'help_html' => true
             ])
             ->add('roles', ChoiceType::class, [
                 'label' => 'Rôles',
