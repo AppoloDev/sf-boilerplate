@@ -23,10 +23,6 @@ class CreatePasswordController extends AbstractController
         UserManager $userManager,
         EntityManagerInterface $entityManager
     ): Response {
-        if (!is_null($this->getUser())) {
-            return $this->redirectToRoute('endpoint_redirect');
-        }
-
         $user = $userRepository->findOneBy(['confirmationToken' => $token]);
 
         if (is_null($user)) {

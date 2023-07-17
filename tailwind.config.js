@@ -6,27 +6,30 @@ module.exports = {
         './vendor/appolodev/sf-toolbox/templates/**/*.twig',
     ],
     safelist: [
-        'bg-teal-500',
-        'text-teal-500'
+        {
+            pattern: /bg-(appolo)-(500|700)/,
+        },
+        'text-appolo-500',
+        'hover:bg-appolo-600',
     ],
-    /*safelist: [
-        {
-            pattern: /bg-(gray|brown|yellow|cyan|neutral|red|green|orange|purple|pink)-(50|100|200|800)/,
+    theme: {
+        extend: {
+            colors: {
+                'appolo': {
+                    '50': '#eefbf4',
+                    '100': '#CEF6D7',
+                    '200': '#A0EEBA',
+                    '300': '#69CE94',
+                    '400': '#3D9D6F',
+                    '500': '#115C40',
+                    '600': '#0C4F3C',
+                    '700': '#084238',
+                    '800': '#053531',
+                    '900': '#032B2C'
+                },
+            }
         },
-        {
-            pattern: /border-(red|green|orange)-(200)/,
-        },
-        {
-            pattern: /text-(gray|brown|yellow|cyan|neutral|red|green|orange|purple|pink)-(50|200|500|600|700|800)/,
-        },
-        'self-start',
-        'hidden',
-        '!hidden',
-        'text-3xl',
-        'md:text-4xl',
-        'font-extrabold',
-        'cursor-default'
-    ],*/
+    },
     plugins: [
         require('preline/plugin'),
     ],

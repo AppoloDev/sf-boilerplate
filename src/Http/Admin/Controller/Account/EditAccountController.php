@@ -10,18 +10,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
 #[Route(path: '/mon-compte', name: 'account_edit')]
 class EditAccountController extends AbstractController
 {
+    /**
+     * @param User $user
+     */
     public function __invoke(
         Request $request,
         EntityManagerInterface $entityManager,
         UserManager $userManager,
+        #[CurrentUser] UserInterface $user
     ): Response {
-        /** @var User $user */
-        $user = $this->getUser();
-
         $form = $this->createForm(AccountFormType::class, $user);
         $form->handleRequest($request);
 

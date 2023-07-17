@@ -53,6 +53,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // TODO: Implement redirection
+        return null;
     }
 
     protected function getLoginUrl(Request $request): string

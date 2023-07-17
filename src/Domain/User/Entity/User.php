@@ -3,13 +3,13 @@
 namespace App\Domain\User\Entity;
 
 use App\Domain\User\Repository\UserRepository;
-use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Authenticable;
-use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Blockable;
-use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\BlockableInterface;
-use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Deletable;
-use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\DeletableInterface;
-use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Identifiable;
-use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Timestampable;
+use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Authenticable\Authenticable;
+use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Blockable\Blockable;
+use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Blockable\BlockableInterface;
+use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Deletable\Deletable;
+use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Deletable\DeletableInterface;
+use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Identifiable\Identifiable;
+use AppoloDev\SFToolboxBundle\Domain\Entity\Concern\Timestampable\Timestampable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;

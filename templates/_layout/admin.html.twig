@@ -1,13 +1,14 @@
-{% extends '@SFToolbox/layouts/navbar.html.twig' %}
+{% extends '@SFToolbox/layouts/sidebar.html.twig' %}
 
-{% block navbar_menu %}
-    <div class="sm:py-4">
-        {{ component('button_link', {
-            allowDisplay: is_granted('admin_user_list'),
-            link:  path('admin_user_list'),
-            label:  'Utilisateurs',
-            mode: 'solid',
-            color: themeColor
-        }) }}
-    </div>
+{% block sidebar_menu %}
+    <ul class="space-y-1.5">
+        <li>
+            {% if is_granted('admin_user_list') %}
+                <a class="flex items-center gap-x-3 py-2 px-2.5 bg-{{ themeColor }}-500 hover:bg-{{ themeColor}}-600 text-sm text-white rounded-md" href="{{ path('admin_user_list') }}">
+                    {{ source('@SFToolbox/icons/user.svg') }}
+                    Utilisateurs
+                </a>
+            {% endif %}
+        </li>
+    </ul>
 {% endblock %}

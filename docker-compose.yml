@@ -1,21 +1,56 @@
 version: '3'
 
 services:
-###> doctrine/doctrine-bundle ###
-  database:
-    image: postgres:${POSTGRES_VERSION:-15}-alpine
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      # You should definitely change the password in production
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    volumes:
-      - database_data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
-
-volumes:
-###> doctrine/doctrine-bundle ###
-  database_data:
-###< doctrine/doctrine-bundle ###
+    mysql:
+        image: mysql
+        restart: unless-stopped
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - 3306:3306
+        volumes:
+            - ~/docker/mysql8/:/var/lib/mysql/
+        networks:
+            - dev
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        depends_on:
+            - mysql
+        ports:
+            - 8080:80
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: root
+            PMA_PASSWORD: root
+            UPLOAD_LIMIT: 300M
+        networks:
+            - dev
+    php:
+        image: php-82
+        command: "symfony server:start"
+        restart: unless-stopped
+        volumes:
+            - ./:/var/www/html/
+        ports:
+            - 8000:8000
+        networks:
+            - dev
+    messenger:
+        image: php-82
+        command: "php bin/console messenger:consume async --limit=2"
+        restart: unless-stopped
+        volumes:
+            - ./:/var/www/html/
+        networks:
+            - dev
+    maildev:
+        image: maildev/maildev
+        restart: unless-stopped
+        ports:
+            - 1080:1080
+            - 1025:1025
+        networks:
+            - dev
+networks:
+    dev:
