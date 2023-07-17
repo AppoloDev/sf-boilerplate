@@ -29,9 +29,9 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    public function querySearch(string $queryString): self
+    public function querySearch(?string $queryString): self
     {
-        if ('' === $queryString) {
+        if (is_null($queryString) || '' === $queryString) {
             return $this;
         }
 

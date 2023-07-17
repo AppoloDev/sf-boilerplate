@@ -12,6 +12,7 @@ use League\Csv\Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\AsciiSlugger;
@@ -24,11 +25,14 @@ class ExportUserController extends AbstractController
      * @throws CannotInsertRecord
      * @throws Exception
      */
-    public function __invoke(Request $request, UserRepository $userRepository,): Response
-    {
+    public function __invoke(
+        Request $request,
+        UserRepository $userRepository,
+        #[MapQueryParameter] ?string $q,
+    ): Response {
         $users = $userRepository
             ->getQB()
-            ->querySearch((string) $request->query->get('q'))
+            ->querySearch($q)
             ->order('updatedAt', 'DESC')
             ->getResults()
         ;

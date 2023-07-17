@@ -8,6 +8,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -19,11 +20,12 @@ class ListUserController extends AbstractController
         Request $request,
         UserRepository $userRepository,
         PaginatorInterface $paginator,
+        #[MapQueryParameter] ?string $q,
     ): Response {
         $pagination = $paginator->paginate(
             $userRepository
                 ->getQB()
-                ->querySearch((string) $request->query->get('q'))
+                ->querySearch($q)
                 ->order('updatedAt', 'DESC')
                 ->getBuilder(),
             $request->query->getInt('page', 1),

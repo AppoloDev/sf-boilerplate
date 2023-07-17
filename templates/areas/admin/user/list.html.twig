@@ -25,7 +25,7 @@
             <div class="flex gap-4 items-center">
                 {% if is_granted('admin_user_export') %}
                     {{ component('button_link', {
-                        link: path('admin_user_export'),
+                        link: path('admin_user_export', {q: app.request.query.get('q')}),
                         label: 'Exporter',
                         color: themeColor,
                         mode: 'ghost',

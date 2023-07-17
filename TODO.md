@@ -3,9 +3,6 @@
     - Google authenticator : Afficher le bouton et accéder au service uniquement si c'est configurer
 
 # A faire dans le bundle
-- Finir le Scaffold --> Revoir le contenu .tpl une fois les components finalisé
-- Template layouts sidebar
-
 - Autoconfig du .env --> Recipe flex
   - SENDER_EMAIL
   - SENDER_NAME
