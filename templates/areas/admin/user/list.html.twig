@@ -19,7 +19,6 @@
             ''
         ],
         pagination: pagination,
-        emptyText: 'Essayez d\'ajouter un nouvel utilisateur.',
     } %}
         {% block header_actions %}
             <div class="flex gap-4 items-center">
@@ -42,6 +41,19 @@
                     }) }}
                 {% endif %}
             </div>
+        {% endblock %}
+
+        {% block emptyList %}
+            {{ component('list_empty', {
+                description: 'Essayez d\'ajouter un nouvel utilisateur.',
+                button: component('button_link', {
+                    allowDisplay: is_granted('admin_user_add'),
+                    link: path('admin_user_add'),
+                    label: "Ajouter",
+                    color: themeColor,
+                    icon: source('@SFToolbox/icons/plus.svg'),
+                })
+            }) }}
         {% endblock %}
 
         {% block table_item %}
