@@ -27,4 +27,17 @@
     </div>
 
     {{ form_end(form) }}
+
+    <hr />
+
+    {{ component('button_link', {
+        link: path('auth_connect_google'),
+        label: 'Se connecter avec Google',
+        mode: 'solid',
+        color: themeColor,
+        block: true,
+        allowDisplay: is_granted('auth_google_login')
+    }) }}
+
+
 {% endblock %}

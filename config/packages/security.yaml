@@ -16,7 +16,10 @@ security:
             login_throttling: ~
             lazy: true
             provider: user
-            custom_authenticator: App\Core\Security\UserAuthenticator
+            custom_authenticator:
+                - App\Core\Security\UserAuthenticator
+                - App\Core\Security\GoogleAuthenticator
+            entry_point: App\Core\Security\UserAuthenticator
             user_checker: App\Core\Security\UserChecker
             logout:
                 path: auth_logout

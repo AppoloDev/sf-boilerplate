@@ -34,6 +34,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Equatab
     #[ORM\Column(name: 'lastname', type: Types::STRING, length: 255)]
     private string $lastname;
 
+    #[ORM\Column(name: 'googleId', type: Types::STRING, length: 255, nullable: true)]
+    private ?string $googleId;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $lastLogin = null;
 
@@ -79,6 +82,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Equatab
         $this->lastLogin = $lastLogin;
 
         return $this;
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(?string $googleId): void
+    {
+        $this->googleId = $googleId;
     }
 
     /**
