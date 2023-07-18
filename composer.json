@@ -1,4 +1,6 @@
 {
+    "name": "appolodev/sf-boilerplate",
+    "description": "Boilerplate for Symfony",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
