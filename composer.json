@@ -2,7 +2,7 @@
     "name": "appolodev/sf-boilerplate",
     "description": "Boilerplate for Symfony",
     "type": "project",
-    "license": "proprietary",
+    "license": "MIT",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
