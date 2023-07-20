@@ -6,8 +6,8 @@
     {{ form_start(form, {attr: {class: 'space-y-4 md:space-y-6'}}) }}
     {% if error is defined and error is not null %}
         {{ component('alert', {
-            type: 'danger',
-            message: error.messageKey|trans(error.messageData, 'security')
+            color: 'red',
+            description: error.messageKey|trans(error.messageData, 'security')
         }) }}
     {% endif %}
 
