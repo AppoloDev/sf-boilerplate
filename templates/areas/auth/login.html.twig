@@ -28,16 +28,18 @@
 
     {{ form_end(form) }}
 
-    <hr />
+    {% if is_granted('auth_google_login') %}
+        <hr/>
 
-    {{ component('button_link', {
-        link: path('auth_connect_google'),
-        label: 'Se connecter avec Google',
-        mode: 'solid',
-        color: themeColor,
-        block: true,
-        allowDisplay: is_granted('auth_google_login')
-    }) }}
+        {{ component('button_link', {
+            link: path('auth_connect_google'),
+            label: 'Se connecter avec Google',
+            mode: 'solid',
+            color: themeColor,
+            block: true,
+            allowDisplay: is_granted('auth_google_login')
+        }) }}
+    {% endif %}
 
 
 {% endblock %}
