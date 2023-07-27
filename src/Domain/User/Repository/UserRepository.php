@@ -4,6 +4,7 @@ namespace App\Domain\User\Repository;
 
 use App\Domain\User\Entity\User;
 use AppoloDev\SFToolboxBundle\Domain\Repository\Criteria\BuilderCriteria;
+use AppoloDev\SFToolboxBundle\Domain\Repository\Criteria\BuilderCriteriaInterface;
 use AppoloDev\SFToolboxBundle\Domain\Repository\Criteria\GroupAndOrderCriteria;
 use AppoloDev\SFToolboxBundle\Domain\Repository\Criteria\JoinCriteria;
 use AppoloDev\SFToolboxBundle\Domain\Repository\Criteria\SelectCriteria;
@@ -14,7 +15,7 @@ use Doctrine\Persistence\ManagerRegistry;
 /**
  * @extends ServiceEntityRepository<User>
  */
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends ServiceEntityRepository implements BuilderCriteriaInterface
 {
     use BuilderCriteria;
     use GroupAndOrderCriteria;
