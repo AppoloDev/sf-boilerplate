@@ -33,7 +33,7 @@ class UserManager
     {
         $user
             ->setConfirmationToken(str_replace('-', '', (string) Uuid::v4()))
-            ->setConfirmationTokenExpiredAt((new \DateTimeImmutable())->add(new \DateInterval('P1D')));
+            ->setConfirmationTokenExpiredAt((new \DateTimeImmutable())->add(new \DateInterval(is_null($user->getLastLogin()) ? 'P7D' : 'P1D')));
 
         return $this;
     }
