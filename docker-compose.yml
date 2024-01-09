@@ -27,7 +27,7 @@ services:
         networks:
             - dev
     php:
-        image: php-82
+        image: php-83
         command: "symfony server:start"
         restart: unless-stopped
         volumes:
@@ -37,7 +37,7 @@ services:
         networks:
             - dev
     messenger:
-        image: php-82
+        image: php-83
         command: "php bin/console messenger:consume async --limit=2"
         restart: unless-stopped
         volumes:
