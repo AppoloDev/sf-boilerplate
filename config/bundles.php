@@ -16,6 +16,5 @@ return [
     Vich\UploaderBundle\VichUploaderBundle::class => ['all' => true],
     Pentatrion\ViteBundle\PentatrionViteBundle::class => ['all' => true],
     KnpU\OAuth2ClientBundle\KnpUOAuth2ClientBundle::class => ['all' => true],
-    Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle::class => ['all' => true],
     AppoloDev\SFToolboxBundle\SFToolboxBundle::class => ['all' => true],
 ];

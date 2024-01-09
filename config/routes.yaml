@@ -1,11 +1,11 @@
 auth:
     resource: ../src/Http/Auth/Controller/
-    type: annotation
+    type: attribute
     prefix: /authentification
     name_prefix: auth_
 
 admin:
     resource: ../src/Http/Admin/Controller/
-    type: annotation
+    type: attribute
     name_prefix: admin_
     prefix: administration
