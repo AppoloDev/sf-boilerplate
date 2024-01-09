@@ -43,6 +43,7 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
             new UserBadge($accessToken->getToken(), function () use ($accessToken, $client) {
                 /** @var GoogleUser $googleUser */
                 $googleUser = $client->fetchUserFromToken($accessToken);
+                $googleId = is_string($googleUser->getId()) ? $googleUser->getId() : null;
 
                 $user = $this->userRepository->findOneBy(['googleId' => $googleUser->getId()]);
 
@@ -53,17 +54,17 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
                 $user = $this->userRepository->findOneBy(['email' => $googleUser->getEmail()]);
 
                 if ($user instanceof User) {
-                    $user->setGoogleId($googleUser->getId());
+                    $user->setGoogleId($googleId);
                     $this->entityManager->flush();
 
                     return $user;
                 }
 
                 $user = (new User())
-                    ->setGoogleId($googleUser->getId())
-                    ->setEmail($googleUser->getEmail())
-                    ->setFirstname($googleUser->getFirstName())
-                    ->setLastname($googleUser->getLastName())
+                    ->setGoogleId($googleId)
+                    ->setEmail($googleUser->getEmail() ?? '')
+                    ->setFirstname($googleUser->getFirstName() ?? '')
+                    ->setLastname($googleUser->getLastName() ?? '')
                 ;
                 $this->entityManager->persist($user);
                 $this->entityManager->flush();

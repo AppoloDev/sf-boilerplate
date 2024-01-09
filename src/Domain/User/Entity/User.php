@@ -89,9 +89,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Equatab
         return $this->googleId;
     }
 
-    public function setGoogleId(?string $googleId): void
+    public function setGoogleId(?string $googleId): self
     {
         $this->googleId = $googleId;
+
+        return $this;
     }
 
     /**

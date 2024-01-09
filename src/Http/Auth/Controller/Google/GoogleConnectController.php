@@ -18,6 +18,6 @@ class GoogleConnectController extends AbstractController
             ->getClient('google')
             ->redirect([
                 'profile', 'email',
-            ]);
+            ], []);
     }
 }
