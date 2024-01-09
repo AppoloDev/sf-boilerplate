@@ -19,3 +19,5 @@ maizzle-dev:
 .PHONY: maizzle-build
 maizzle-build:
 	cd ./maizzle && pnpm build
+ngrok:
+	ngrok http https://localhost:8000
