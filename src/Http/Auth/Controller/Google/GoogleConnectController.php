@@ -17,7 +17,7 @@ class GoogleConnectController extends AbstractController
         return $clientRegistry
             ->getClient('google')
             ->redirect([
-                'profile', 'email'
+                'profile', 'email',
             ]);
     }
 }

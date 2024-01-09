@@ -21,18 +21,17 @@ use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface
 
 class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationEntrypointInterface
 {
-
     public function __construct(
         protected readonly ClientRegistry $clientRegistry,
         protected readonly EntityManagerInterface $entityManager,
         protected readonly UserRepository $userRepository,
         protected readonly RouterInterface $router
-    ){
+    ) {
     }
 
     public function supports(Request $request): ?bool
     {
-        return $request->attributes->get('_route') === 'auth_connect_google_check';
+        return 'auth_connect_google_check' === $request->attributes->get('_route');
     }
 
     public function authenticate(Request $request): Passport
@@ -41,7 +40,7 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
         $accessToken = $this->fetchAccessToken($client);
 
         return new SelfValidatingPassport(
-            new UserBadge($accessToken->getToken(), function() use ($accessToken, $client) {
+            new UserBadge($accessToken->getToken(), function () use ($accessToken, $client) {
                 /** @var GoogleUser $googleUser */
                 $googleUser = $client->fetchUserFromToken($accessToken);
 
@@ -56,6 +55,7 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
                 if ($user instanceof User) {
                     $user->setGoogleId($googleUser->getId());
                     $this->entityManager->flush();
+
                     return $user;
                 }
 

@@ -17,8 +17,7 @@ class GoogleVoter extends AbstractVoter
         protected readonly ?string $clientId,
         #[Autowire('%env(OAUTH_GOOGLE_CLIENT_SECRET)%')]
         protected readonly ?string $clientSecret
-    )
-    {
+    ) {
         parent::__construct($security);
     }
 
@@ -32,9 +31,9 @@ class GoogleVoter extends AbstractVoter
 
     protected function voteOnAttribute(string $attribute, mixed $subject, TokenInterface $token): bool
     {
-        return !is_null($this->clientId) &&
-            '' !== $this->clientId &&
-            !is_null($this->clientSecret) &&
-            '' !== $this->clientSecret;
+        return !is_null($this->clientId)
+            && '' !== $this->clientId
+            && !is_null($this->clientSecret)
+            && '' !== $this->clientSecret;
     }
 }
