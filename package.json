@@ -12,6 +12,8 @@
         "tom-select": "^2.3.1"
     },
     "devDependencies": {
+        "@hotwired/stimulus": "^3.0.0",
+        "@symfony/ux-toggle-password": "file:vendor/symfony/ux-toggle-password/assets",
         "autoprefixer": "^10.4.16",
         "postcss": "^8.4.33",
         "preline": "^2.0.3",

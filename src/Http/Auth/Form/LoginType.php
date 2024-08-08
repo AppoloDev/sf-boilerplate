@@ -26,6 +26,9 @@ class LoginType extends AbstractType
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
+                'toggle' => true,
+                'hidden_label' => 'Masquer',
+                'visible_label' => 'Afficher',
                 'required' => true,
             ])
             ->add('submit', SubmitType::class, [

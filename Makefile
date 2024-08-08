@@ -1,6 +1,6 @@
 .PHONY: lint
 lint:
-	vendor/bin/phpstan analyse src
+	php -d memory_limit=-1 vendor/bin/phpstan analyse src
 .PHONY: fix
 fix:
 	vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --diff
