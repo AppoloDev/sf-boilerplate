@@ -3,15 +3,15 @@
 {% block title %}{{ user.firstname}} {{ user.lastname }}{% endblock %}
 
 {% block breadcrumb %}
-    {{ component('breadcrumb', {items: [
+    <twig:Breadcrumb items="{{  [
         {path: path('admin_dashboard'), label: 'Accueil'},
         {path: path('admin_user_list'), label: 'Utilisateurs'},
         {path: null, label: block('title')},
-    ]}) }}
+    ] }}"/>
 {% endblock %}
 
 {% block body %}
-    {% component form_layout with {
+    {% component FormLayout with {
         headerTitle: block('title'),
     } %}
         {% block form_render %}

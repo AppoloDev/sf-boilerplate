@@ -40,12 +40,12 @@
         </fieldset>
 
         <div class="pt-6 sm:pt-12">
-            {{ component('form_submit', {
-                form: form,
-                deleteButtonLink: user is defined and is_granted('admin_user_delete', user) ? path('admin_user_delete', {id: user.id}) :null,
-                deleteSwalTitle: 'Supprimer cet utilisateur',
-                deleteSwalColor: 'red',
-            }) }}
+            <twig:FormSubmit
+                    form="{{ form }}"
+                    deleteButtonLink="{{ user is defined and is_granted('admin_user_delete', user) ? path('admin_user_delete', {id: user.id}) :null }}"
+                    deleteSwalTitle="Supprimer cet utilisateur"
+                    deleteSwalColor="red"
+            />
         </div>
     </div>
 </div>

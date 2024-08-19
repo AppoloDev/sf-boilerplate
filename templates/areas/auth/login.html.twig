@@ -5,10 +5,7 @@
 {% block body %}
     {{ form_start(form, {attr: {class: 'space-y-4 md:space-y-6'}}) }}
     {% if error is defined and error is not null %}
-        {{ component('alert', {
-            color: 'red',
-            description: error.messageKey|trans(error.messageData, 'security')
-        }) }}
+        <twig:Alert color="red" description="{{ error.messageKey|trans(error.messageData, 'security') }}"/>
     {% endif %}
 
     {{ form_row(form.email) }}
@@ -17,13 +14,13 @@
     <div class="space-y-2">
         {{ form_row(form.submit, {'attr': {'class': 'w-full'}}) }}
 
-        {{ component('button_link', {
-            link: path('auth_forgot_password'),
-            label: 'Mot de passe oublié ?',
-            mode: 'ghost',
-            color: themeColor,
-            block: true
-        }) }}
+        <twig:ButtonLink
+                link="{{ path('auth_forgot_password') }}"
+                label="Mot de passe oublié ?"
+                mode="ghost"
+                color="{{ themeColor }}"
+                :block="true"
+        />
     </div>
 
     {{ form_end(form) }}
@@ -31,14 +28,14 @@
     {% if is_granted('auth_google_login') %}
         <hr/>
 
-        {{ component('button_link', {
-            link: path('auth_connect_google'),
-            label: 'Se connecter avec Google',
-            mode: 'solid',
-            color: themeColor,
-            block: true,
-            allowDisplay: is_granted('auth_google_login')
-        }) }}
+        <twig:ButtonLink
+                link="{{ path('auth_connect_google') }}"
+                label="Continuer avec Google"
+                mode="solid"
+                color="{{ themeColor }}"
+                :block="true"
+                allowDisplay="{{ is_granted('auth_google_login') }}"
+        />
     {% endif %}
 
 

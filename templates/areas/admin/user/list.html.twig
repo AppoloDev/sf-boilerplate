@@ -3,14 +3,14 @@
 {% block title %}Liste des utilisateurs{% endblock %}
 
 {% block breadcrumb %}
-    {{ component('breadcrumb', {items: [
+    <twig:Breadcrumb items="{{ [
         {path: path('admin_dashboard'), label: 'Accueil'},
         {path: null, label: block('title')},
-    ]}) }}
+    ]}}"/>
 {% endblock %}
 
 {% block body %}
-    {% component table_list with {
+    {% component TableList with {
         headerTitle: block('title'),
         tableColumns: [
             knp_pagination_sortable(pagination, 'Nom', 'u.firstname'),
@@ -23,37 +23,38 @@
         {% block header_actions %}
             <div class="flex gap-4 items-center">
                 {% if is_granted('admin_user_export') %}
-                    {{ component('button_link', {
-                        link: path('admin_user_export', {q: app.request.query.get('q')}),
-                        label: 'Exporter',
-                        color: themeColor,
-                        mode: 'ghost',
-                        icon: source('@SFToolbox/icons/download.svg'),
-                    }) }}
+                    <twig:ButtonLink
+                            link="{{ path('admin_user_export', {q: app.request.query.get('q')}) }}"
+                            label="Exporter"
+                            mode="ghost"
+                            color="{{ themeColor }}"
+                            icon="{{ ux_icon('fa6-solid:file-export') }}"
+                    />
                 {% endif %}
 
                 {% if is_granted('admin_user_add') %}
-                    {{ component('button_link', {
-                        link: path('admin_user_add'),
-                        label: 'Ajouter',
-                        color: themeColor,
-                        icon: source('@SFToolbox/icons/plus.svg')
-                    }) }}
+                    <twig:ButtonLink
+                            link="{{ path('admin_user_add') }}"
+                            label="Ajouter"
+                            color="{{ themeColor }}"
+                            icon="{{ ux_icon('fa6-solid:plus') }}"
+                    />
                 {% endif %}
             </div>
         {% endblock %}
 
         {% block emptyList %}
-            {{ component('list_empty', {
-                description: 'Essayez d\'ajouter un nouvel utilisateur.',
-                button: component('button_link', {
-                    allowDisplay: is_granted('admin_user_add'),
-                    link: path('admin_user_add'),
-                    label: "Ajouter",
-                    color: themeColor,
-                    icon: source('@SFToolbox/icons/plus.svg'),
-                })
-            }) }}
+            <twig:ListEmpty description="Essayez d'ajouter un nouvel utilisateur.">
+                <twig:block name="ListEmptyButton">
+                    <twig:ButtonLink
+                            allowDisplay="{{ is_granted('admin_user_add') }}"
+                            icon="{{ ux_icon('fa6-solid:plus') }}"
+                            label="Ajouter"
+                            link="{{ path('admin_user_add') }}"
+                            color="{{ themeColor }}"
+                    />
+                </twig:block>
+            </twig:ListEmpty>
         {% endblock %}
 
         {% block table_item %}

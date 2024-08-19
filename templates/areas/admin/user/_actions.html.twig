@@ -5,70 +5,72 @@
         is_granted('admin_user_unblock', user) or
         is_granted('admin_user_delete', item) %}
         <div class="px-6 py-2">
-            {{ component('dropdown_menu', {
-                headerLabel: 'Actions',
-                button: component('button', {
-                    icon: source('@SFToolbox/icons/ellipsis.svg'),
-                    mode: 'white',
-                    color: themeColor
-                }),
-                items: [
-                    component('dropdown_item_container', {
-                        allowDisplay: is_granted('admin_user_edit', item) or is_granted('admin_user_block', item) or is_granted('admin_user_unblock', item),
-                        items: [
-                            component('button_link', {
-                                allowDisplay: is_granted('admin_user_edit', item),
-                                link: path('admin_user_edit', {id: item.id}),
-                                label: 'Modifier',
-                                mode: 'ghost',
-                                block: true,
-                                size: 'small',
-                            }),
-                            component('button_link_sweetalert', {
-                                allowDisplay: is_granted('admin_user_block', item),
-                                link: path('admin_user_block', {id: item.id}),
-                                label: 'Bloquer',
-                                mode: 'ghost',
-                                block: true,
-                                size: 'small',
-                                color: 'orange',
-                                swalTitle: 'Bloquer cet utilisateur',
-                                swalText: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
-                                swalColor: 'orange'
-                            }),
-                            component('button_link_sweetalert', {
-                                allowDisplay: is_granted('admin_user_unblock', item),
-                                link: path('admin_user_unblock', {id: item.id}),
-                                label: 'Débloquer',
-                                mode: 'ghost',
-                                block: true,
-                                size: 'small',
-                                color: 'orange',
-                                swalTitle: 'Débloquer cet utilisateur',
-                                swalText: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
-                                swalColor: 'orange'
-                            })
-                        ]
-                    }),
-                    component('dropdown_item_container', {
-                        allowDisplay: is_granted('admin_user_delete', item),
-                        items: [
-                            component('button_link_sweetalert', {
-                                allowDisplay: is_granted('admin_user_delete', item),
-                                link: path('admin_user_delete', {id: item.id}),
-                                label: 'Supprimer',
-                                mode: 'ghost',
-                                block: true,
-                                size: 'small',
-                                color: 'red',
-                                swalTitle: 'Supprimer cet utilisateur',
-                                swalText: 'Vous êtes sur le point d’effectuer une action totalement irréversible …',
-                                swalColor: 'red'
-                            }),
-                        ]
-                    })
-                ]
-            }) }}
+            <twig:DropdownMenu>
+                <twig:block name="dropdownHeaderLabel">Actions</twig:block>
+                <twig:block name="dropdownButton">
+                    <twig:Button
+                            icon="{{ ux_icon('fa6-solid:ellipsis') }}"
+                            mode="white"
+                            color="{{ themeColor }}"
+                    />
+                </twig:block>
+
+                <twig:block name="dropdownItems">
+                    <twig:DropdownItemContainer allowDisplay="{{ is_granted('admin_user_edit', item) or is_granted('admin_user_block', item) or is_granted('admin_user_unblock', item) }}">
+                        <twig:block name="dropdownItemContainerItems">
+                            <twig:ButtonLink
+                                    allowDisplay="{{ is_granted('admin_user_edit', item) }}"
+                                    link="{{ path('admin_user_edit', {id: item.id}) }}"
+                                    label="Modifier"
+                                    mode="ghost"
+                                    :block="true"
+                                    size="small"
+                            />
+                            <twig:ButtonLinkSweetAlert
+                                    allowDisplay="{{ is_granted('admin_user_block', item) }}"
+                                    link="{{ path('admin_user_block', {id: item.id}) }}"
+                                    label="Bloquer"
+                                    mode="ghost"
+                                    :block="true"
+                                    size="small"
+                                    color="orange"
+                                    swalTitle="Bloquer cet utilisateur"
+                                    swalText="Vous êtes sur le point d’effectuer une action totalement irréversible …"
+                                    swalColor="orange"
+                            />
+                            <twig:ButtonLinkSweetAlert
+                                    allowDisplay="{{ is_granted('admin_user_unblock', item) }}"
+                                    link="{{ path('admin_user_unblock', {id: item.id}) }}"
+                                    label="Débloquer"
+                                    mode="ghost"
+                                    :block="true"
+                                    size="small"
+                                    color="orange"
+                                    swalTitle="Débloquer cet utilisateur"
+                                    swalText="Vous êtes sur le point d’effectuer une action totalement irréversible …"
+                                    swalColor="orange"
+                            />
+                        </twig:block>
+                    </twig:DropdownItemContainer>
+                    <twig:DropdownItemContainer allowDisplay="{{ is_granted('admin_user_delete', item) }}">
+                        <twig:block name="dropdownItemContainerItems">
+                            <twig:ButtonLinkSweetAlert
+                                    allowDisplay="{{ is_granted('admin_user_delete', item) }}"
+                                    link="{{ path('admin_user_delete', {id: item.id}) }}"
+                                    label="Supprimer"
+                                    mode="ghost"
+                                    :block="true"
+                                    size="small"
+                                    color="red"
+                                    swalTitle="Supprimer cet utilisateur"
+                                    swalText="Vous êtes sur le point d’effectuer une action totalement irréversible …"
+                                    swalColor="red"
+                            />
+                        </twig:block>
+                    </twig:DropdownItemContainer>
+
+                </twig:block>
+            </twig:DropdownMenu>
         </div>
     {% endif %}
 {% endblock %}

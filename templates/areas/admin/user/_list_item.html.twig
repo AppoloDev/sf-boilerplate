@@ -17,9 +17,9 @@
                 <div class="block">
                     {% for role in item.roles %}
                         {% if role is same as('ROLE_ADMIN') %}
-                            {{ component('badge', {label: 'Admin', color: 'indigo'}) }}
+                            <twig:Badge label="Admin" color="indigo" />
                         {% elseif role is same as('ROLE_MANAGER') %}
-                            {{ component('badge', {label: 'Gestionnaire', color: 'orange'}) }}
+                            <twig:Badge label="Gestionnaire" color="orange" />
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -27,7 +27,7 @@
         </td>
         <td class="h-px w-px whitespace-nowrap">
             <div class="px-6 py-3 flex justify-center">
-                {{ component('badge_yesno', {value: not item.isBlocked, labelTrue: 'Actif', labelFalse: 'Bloqué'}) }}
+                <twig:BadgeYesNo value="{{ not item.isBlocked }}" labelTrue="Actif" labelFalse="Bloqué"  />
             </div>
         </td>
 
