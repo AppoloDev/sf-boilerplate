@@ -3,7 +3,7 @@
 namespace App\Http\Auth\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[Route(path: '/deconnexion', name: 'logout')]
 class LogoutController extends AbstractController
