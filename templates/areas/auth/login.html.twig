@@ -31,8 +31,9 @@
         <twig:ButtonLink
                 link="{{ path('auth_connect_google') }}"
                 label="Continuer avec Google"
-                mode="solid"
+                mode="outline"
                 color="{{ themeColor }}"
+                icon="{{ source('@icons/google.svg') }}"
                 :block="true"
                 allowDisplay="{{ is_granted('auth_google_login') }}"
         />
