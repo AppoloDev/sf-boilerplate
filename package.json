@@ -6,22 +6,20 @@
     },
     "license": "UNLICENSED",
     "dependencies": {
-        "@tailwindcss/forms": "^0.5.7",
-        "sweetalert2": "^11.10.2",
+        "sweetalert2": "^11.17.2",
         "tippy.js": "^6.3.7",
-        "tom-select": "^2.3.1"
+        "tom-select": "^2.4.3"
     },
     "devDependencies": {
-        "@hotwired/stimulus": "^3.0.0",
+        "@hotwired/stimulus": "^3.2.2",
         "@symfony/stimulus-bridge": "^3.2.0",
         "@symfony/ux-toggle-password": "file:vendor/symfony/ux-toggle-password/assets",
-        "autoprefixer": "^10.4.16",
-        "postcss": "^8.4.33",
-        "preline": "^2.0.3",
-        "sass": "^1.69.7",
-        "tailwindcss": "^3.4.1",
-        "vite": "^5.0",
-        "vite-plugin-mkcert": "^1.17.2",
-        "vite-plugin-symfony": "^6.3.2"
+        "@tailwindcss/forms": "^0.5.10",
+        "@tailwindcss/vite": "^4.0.14",
+        "preline": "^3.0.1",
+        "tailwindcss": "^4.0.14",
+        "vite": "^6.2",
+        "vite-plugin-mkcert": "^1.17.8",
+        "vite-plugin-symfony": "^8.0.2"
     }
 }
