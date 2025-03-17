@@ -3,6 +3,8 @@
 /* Preline UI */
 @import '../../../node_modules/preline/variants.css';
 
+@import "../../../vendor/appolodev/sf-toolbox/assets/css/app.css";
+
 @theme {
     --color-appolo-50: oklch(97.65% 0.0165 162.76);
     --color-appolo-100: oklch(93.65% 0.0587 151.88);

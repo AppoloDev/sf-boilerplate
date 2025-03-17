@@ -2,9 +2,7 @@ import "./css/app.css";
 
 import 'preline';
 
-/*
-import "../../vendor/appolodev/sf-toolbox/assets/app.js";
-import "./js/libraries/stimulus/bootstrap";
+import "../../vendor/appolodev/sf-toolbox/assets/js/components/toast/toast";
+import "../../vendor/appolodev/sf-toolbox/assets/js/components/tomselect/tomselect";
 
-import './js/components/tomselect/tomselect';
-*/
+import './js/libraries/stimulus/bootstrap'
