@@ -7,6 +7,7 @@ use AppoloDev\SFToolboxBundle\Message\EmailMessage;
 
 class AccountCreationEmailMessage extends EmailMessage
 {
+    // TODO: Translation
     private string $object = 'Bienvenue 🎉';
 
     protected string $template = '_emails/user/account_creation.html.twig';

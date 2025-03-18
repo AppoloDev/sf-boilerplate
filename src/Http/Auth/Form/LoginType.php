@@ -17,7 +17,7 @@ class LoginType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Adresse email',
+                'label' => 'email',
                 'required' => true,
                 'constraints' => [
                     new NotBlank(),
@@ -25,14 +25,14 @@ class LoginType extends AbstractType
                 ],
             ])
             ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe',
+                'label' => 'password',
                 'toggle' => true,
-                'hidden_label' => 'Masquer',
-                'visible_label' => 'Afficher',
+                'hidden_label' => '',
+                'visible_label' => '',
                 'required' => true,
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Connexion',
+                'label' => 'login',
             ]);
     }
 

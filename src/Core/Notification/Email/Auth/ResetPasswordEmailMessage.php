@@ -7,6 +7,7 @@ use AppoloDev\SFToolboxBundle\Message\EmailMessage;
 
 class ResetPasswordEmailMessage extends EmailMessage
 {
+    // TODO: Translation
     private string $object = 'Réinitialisez votre mot de passe pour votre compte 🔒';
 
     protected string $template = '_emails/auth/reset_password.html.twig';

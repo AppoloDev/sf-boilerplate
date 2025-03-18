@@ -14,6 +14,7 @@ class UserChecker implements UserCheckerInterface
      */
     public function checkPreAuth(UserInterface $user): void
     {
+        // TODO: Translation
         if ($user->isBlocked()) {
             throw new CustomUserMessageAccountStatusException('Votre compte a été bloqué. Merci de contacter un administrateur.');
         }

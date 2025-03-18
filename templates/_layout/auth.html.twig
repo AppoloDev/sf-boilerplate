@@ -1,0 +1,47 @@
+{% extends '@SFToolbox/layouts/auth.html.twig' %}
+
+{% block language_switcher %}
+    {% set locales = {
+        fr: {
+            'localename': 'fr'|locale_name('fr')|capitalize,
+            'icon': '🇫🇷'
+        },
+        en: {
+            'localename': 'en'|locale_name('en')|capitalize,
+            'icon': '🇬🇧'
+        },
+        es: {
+            'localename': 'es'|locale_name('es')|capitalize,
+            'icon': '🇪🇸'
+        }
+    } %}
+    <div class="absolute top-2 right-8">
+        <twig:DropdownMenu>
+            <twig:block name="dropdownButton">
+                <twig:Button
+                        icon="{{ locales[app.request.locale].icon }}"
+                        mode="ghost"
+                        color="{{ themeColor }}"
+                        label="{{ app.request.locale|locale_name(app.request.locale)|capitalize }}"
+                />
+            </twig:block>
+
+            <twig:block name="dropdownItems">
+                <twig:DropdownItemContainer>
+                    <twig:block name="dropdownItemContainerItems">
+                        {% for k, locale in locales %}
+                            <twig:ButtonLink
+                                    icon="{{ locale.icon }}"
+                                    link="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge(app.request.query.all)|merge({ _locale: k })) }}"
+                                    label="{{ locale.localename }}"
+                                    mode="ghost"
+                                    :block="true"
+                                    size="small"
+                            />
+                        {% endfor %}
+                    </twig:block>
+                </twig:DropdownItemContainer>
+            </twig:block>
+        </twig:DropdownMenu>
+    </div>
+{% endblock %}

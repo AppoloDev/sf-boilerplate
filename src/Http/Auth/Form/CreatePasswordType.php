@@ -21,20 +21,23 @@ class CreatePasswordType extends AbstractType
                 'constraints' => [
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Votre mot de passe doit comporter au moins 8 caractères.',
+                        'minMessage' => 'form.constraint.password_min_length',
                     ]),
                 ],
-                'invalid_message' => 'Le mot de passe ne correspond pas',
+                'invalid_message' => 'form.constraint.invalid_password',
                 'first_options' => [
-                    'label' => 'Mot de passe',
+                    'label' => 'password',
+                    'toggle' => true,
+                    'hidden_label' => '',
+                    'visible_label' => '',
                 ],
                 'second_options' => [
-                    'label' => 'Répéter le mot de passe',
+                    'label' => 'password_repeat',
                 ],
                 'required' => true,
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer',
+                'label' => 'save',
             ]);
     }
 

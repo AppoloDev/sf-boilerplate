@@ -1,8 +1,10 @@
-{% extends '@SFToolbox/layouts/auth.html.twig' %}
+{% extends '_layout/auth.html.twig' %}
 
-{% block title %}Connectez-vous{% endblock %}
+{% block title %}{{ 'login'|trans }}{% endblock %}
 
 {% block body %}
+    {{ block('language_switcher') }}
+
     {{ form_start(form, {attr: {class: 'space-y-4 md:space-y-6'}}) }}
     {% if error is defined and error is not null %}
         <twig:Alert color="red" description="{{ error.messageKey|trans(error.messageData, 'security') }}"/>
@@ -16,7 +18,7 @@
 
         <twig:ButtonLink
                 link="{{ path('auth_forgot_password') }}"
-                label="Mot de passe oublié ?"
+                label="{{ 'forgot_password'|trans }}"
                 mode="ghost"
                 color="{{ themeColor }}"
                 :block="true"
@@ -30,7 +32,7 @@
 
         <twig:ButtonLink
                 link="{{ path('auth_connect_google') }}"
-                label="Continuer avec Google"
+                label="{{ 'connect_google'|trans }}"
                 mode="outline"
                 color="default"
                 icon="{{ source('@icons/google.svg') }}"
@@ -38,6 +40,4 @@
                 allowDisplay="{{ is_granted('auth_google_login') }}"
         />
     {% endif %}
-
-
 {% endblock %}

@@ -11,14 +11,22 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route(path: 'utilisateur/ajouter', name: 'user_add')]
+#[Route(path: [
+    'en' => '/user/add',
+    'es' => '/usuario/agregar',
+    'fr' => '/utilisateur/ajouter'
+], name: 'user_add')]
 #[IsGranted(UserVoter::ADD)]
 class AddUserController extends AbstractController
 {
+    /**
+     * @throws ExceptionInterface
+     */
     public function __invoke(
         Request $request,
         EntityManagerInterface $entityManager,
@@ -36,6 +44,7 @@ class AddUserController extends AbstractController
 
             $messageBus->dispatch(new AccountCreationEmailMessage($user));
 
+            // TODO: Translation
             $this->addFlash('success', 'L\'utilisateur a été ajouté.');
 
             return $this->redirectToRoute('admin_user_list');

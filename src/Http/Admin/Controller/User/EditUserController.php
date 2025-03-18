@@ -12,7 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route(path: 'utilisateur/{id}/modifier', name: 'user_edit')]
+#[Route(path: [
+    'en' => '/user/{id}/edit',
+    'es' => '/usuario/{id}/editar',
+    'fr' => '/utilisateur/{id}/modifier'
+], name: 'user_edit')]
 #[IsGranted(UserVoter::EDIT, 'user')]
 class EditUserController extends AbstractController
 {
@@ -27,6 +31,7 @@ class EditUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            // TODO: Translation
             $this->addFlash('success', 'L\'utilisateur a été modifié.');
 
             return $this->redirectToRoute('admin_user_list');

@@ -17,7 +17,11 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\String\Slugger\AsciiSlugger;
 
-#[Route(path: 'utilisateurs/exporter', name: 'user_export')]
+#[Route(path: [
+    'en' => '/users/export',
+    'es' => '/usuarios/exportar',
+    'fr' => 'utilisateurs/exporter'
+], name: 'user_export')]
 #[IsGranted(UserVoter::EXPORT)]
 class ExportUserController extends AbstractController
 {
@@ -48,6 +52,7 @@ class ExportUserController extends AbstractController
             ];
         }, $users));
 
+        // TODO: Translation
         return new CsvFileResponse($csv->getContent(), (new AsciiSlugger())->slug('Liste des utilisateurs').'.csv');
     }
 }

@@ -13,7 +13,11 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 
-#[Route(path: '/mon-compte', name: 'account_edit')]
+#[Route(path: [
+    'en' => '/my-account',
+    'es' => '/mi-cuenta',
+    'fr' => '/mon-compte'
+], name: 'account_edit')]
 class EditAccountController extends AbstractController
 {
     /**
@@ -33,6 +37,7 @@ class EditAccountController extends AbstractController
                 $userManager->upgradePassword($user);
             }
 
+            // TODO: Translation
             $this->addFlash('success', 'Les informations ont été enregistrées.');
             $entityManager->flush();
         }

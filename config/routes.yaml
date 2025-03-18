@@ -1,11 +1,17 @@
 auth:
     resource: ../src/Http/Auth/Controller/
     type: attribute
-    prefix: /authentification
+    prefix:
+        fr: /authentification
+        en: /authentication
+        es: /autenticacion
     name_prefix: auth_
 
 admin:
     resource: ../src/Http/Admin/Controller/
     type: attribute
     name_prefix: admin_
-    prefix: administration
+    prefix:
+        fr: /administration
+        en: /administration
+        es: /administracion

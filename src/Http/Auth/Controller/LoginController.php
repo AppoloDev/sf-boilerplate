@@ -12,7 +12,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-#[Route(path: '/', name: 'login')]
+#[Route(path: [
+    'en' => '/login',
+    'es' => '/acceso',
+    'fr' => '/se-connecter'
+], name: 'login')]
 #[IsNotGranted('IS_AUTHENTICATED')]
 class LoginController extends AbstractController
 {

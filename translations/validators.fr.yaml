@@ -1,0 +1,4 @@
+form:
+    constraint:
+        password_min_length: 'Le mot de passe doit contenir au moins 8 caractères.'
+        invalid_password: 'Mot de passe incorrect.'

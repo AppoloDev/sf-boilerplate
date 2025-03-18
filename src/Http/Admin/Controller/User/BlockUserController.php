@@ -10,7 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route(path: 'utilisateur/{id}/bloquer', name: 'user_block')]
+#[Route(path: [
+    'en' => '/user/{id}/block',
+    'es' => '/usuario/{id}/bloquear',
+    'fr' => '/utilisateur/{id}/bloquer'
+], name: 'user_block')]
 #[IsGranted(UserVoter::BLOCK, 'user')]
 class BlockUserController extends AbstractController
 {
@@ -19,6 +23,7 @@ class BlockUserController extends AbstractController
         $user->setBlocked(true);
         $entityManager->flush();
 
+        // TODO: Translation
         $this->addFlash('success', 'L\'utilisateur a été bloqué.');
 
         return $this->redirectToRoute('admin_user_list');

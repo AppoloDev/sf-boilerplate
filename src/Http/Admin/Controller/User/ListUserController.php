@@ -12,7 +12,11 @@ use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route(path: 'utilisateurs', name: 'user_list')]
+#[Route(path: [
+    'en' => '/users',
+    'es' => '/usuarios',
+    'fr' => 'utilisateurs'
+], name: 'user_list')]
 #[IsGranted(UserVoter::LIST)]
 class ListUserController extends AbstractController
 {

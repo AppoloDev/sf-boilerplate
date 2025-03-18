@@ -11,13 +11,21 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/mot-de-passe-oublie', name: 'forgot_password')]
+#[Route(path: [
+    'en' => '/forgot-password',
+    'es' => '/contrasena-olvidada',
+    'fr' => '/mot-de-passe-oublie'
+], name: 'forgot_password')]
 #[IsNotGranted('IS_AUTHENTICATED')]
 class ForgotPasswordController extends AbstractController
 {
+    /**
+     * @throws ExceptionInterface
+     */
     public function __invoke(
         Request $request,
         UserRepository $userRepository,
@@ -45,7 +53,7 @@ class ForgotPasswordController extends AbstractController
 
             return $this->render('areas/auth/forgot_password.html.twig', [
                 'form' => $form,
-                'error' => 'L\'adresse email est invalide.',
+                'error' => 'invalid_email',
             ]);
         }
 

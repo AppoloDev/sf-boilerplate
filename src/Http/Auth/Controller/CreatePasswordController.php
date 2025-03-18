@@ -12,7 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route(path: '/creation-de-mot-de-passe/{token}', name: 'create_password')]
+#[Route(path: [
+    'en' => '/password-creation/{token}',
+    'es' => '/creacion-de-contrasena/{token}',
+    'fr' => '/creation-de-mot-de-passe/{token}'
+], name: 'create_password')]
 #[IsNotGranted('IS_AUTHENTICATED')]
 class CreatePasswordController extends AbstractController
 {

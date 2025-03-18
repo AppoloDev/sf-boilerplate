@@ -17,6 +17,7 @@ class AccountFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // TODO: Translation
         $builder
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',

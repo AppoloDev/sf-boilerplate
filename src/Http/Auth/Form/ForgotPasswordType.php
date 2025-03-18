@@ -15,7 +15,7 @@ class ForgotPasswordType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'Adresse email',
+                'label' => 'email',
                 'required' => true,
                 'constraints' => [
                     new NotBlank(),
@@ -23,7 +23,7 @@ class ForgotPasswordType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Réinitialiser le mot de passe',
+                'label' => 'password_reset',
             ]);
     }
 }

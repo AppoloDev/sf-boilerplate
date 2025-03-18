@@ -3,8 +3,6 @@
 - Todos
 
 # BOnus bundle
-- Geocomplete ?
-  - Concern ?
-  - FormType ?
-  - Validator ?
-  - Model transformer ?
+- Translations
+- TW4
+- 
