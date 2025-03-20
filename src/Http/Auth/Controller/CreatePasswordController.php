@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(path: [
     'en' => '/password-creation/{token}',
     'es' => '/creacion-de-contrasena/{token}',
-    'fr' => '/creation-de-mot-de-passe/{token}'
+    'fr' => '/creation-de-mot-de-passe/{token}',
 ], name: 'create_password')]
 #[IsNotGranted('IS_AUTHENTICATED')]
 class CreatePasswordController extends AbstractController
@@ -25,7 +25,7 @@ class CreatePasswordController extends AbstractController
         Request $request,
         UserRepository $userRepository,
         UserManager $userManager,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): Response {
         $user = $userRepository->findOneBy(['confirmationToken' => $token]);
 

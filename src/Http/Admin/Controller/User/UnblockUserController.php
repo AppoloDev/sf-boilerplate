@@ -14,7 +14,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: [
     'en' => '/user/{id}/unblock',
     'es' => '/usuario/{id}/desbloquear',
-    'fr' => '/utilisateur/{id}/debloquer'
+    'fr' => '/utilisateur/{id}/debloquer',
 ], name: 'user_unblock')]
 #[IsGranted(UserVoter::UNBLOCK, 'user')]
 class UnblockUserController extends AbstractController
@@ -22,9 +22,8 @@ class UnblockUserController extends AbstractController
     public function __invoke(
         User $user,
         EntityManagerInterface $entityManager,
-        TranslatorInterface $translator
-    ): Response
-    {
+        TranslatorInterface $translator,
+    ): Response {
         $user->setBlocked(false);
         $entityManager->flush();
 

@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 #[Route(path: [
     'en' => '/login',
     'es' => '/acceso',
-    'fr' => '/se-connecter'
+    'fr' => '/se-connecter',
 ], name: 'login')]
 #[IsNotGranted('IS_AUTHENTICATED')]
 class LoginController extends AbstractController
@@ -24,7 +24,7 @@ class LoginController extends AbstractController
         Request $request,
         AuthenticationUtils $authenticationUtils,
         UserRepository $userRepository,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): Response {
         $form = $this->createForm(LoginType::class, null);
         $form->handleRequest($request);

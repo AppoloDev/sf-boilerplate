@@ -17,7 +17,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: [
     'en' => '/my-account',
     'es' => '/mi-cuenta',
-    'fr' => '/mon-compte'
+    'fr' => '/mon-compte',
 ], name: 'account_edit')]
 class EditAccountController extends AbstractController
 {
@@ -29,7 +29,7 @@ class EditAccountController extends AbstractController
         EntityManagerInterface $entityManager,
         UserManager $userManager,
         TranslatorInterface $translator,
-        #[CurrentUser] UserInterface $user
+        #[CurrentUser] UserInterface $user,
     ): Response {
         $form = $this->createForm(AccountFormType::class, $user);
         $form->handleRequest($request);

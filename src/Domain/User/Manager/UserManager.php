@@ -3,9 +3,6 @@
 namespace App\Domain\User\Manager;
 
 use App\Domain\User\Entity\User;
-use DateInterval;
-use DateMalformedIntervalStringException;
-use DateTime;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Uid\Uuid;
 
@@ -33,13 +30,13 @@ class UserManager
     }
 
     /**
-     * @throws DateMalformedIntervalStringException
+     * @throws \DateMalformedIntervalStringException
      */
     public function generateConfirmationToken(User $user): self
     {
         $user
             ->setConfirmationToken(str_replace('-', '', (string) Uuid::v4()))
-            ->setConfirmationTokenExpiredAt((new DateTime())->add(new DateInterval(is_null($user->getLastLogin()) ? 'P7D' : 'P1D')));
+            ->setConfirmationTokenExpiredAt((new \DateTime())->add(new \DateInterval(is_null($user->getLastLogin()) ? 'P7D' : 'P1D')));
 
         return $this;
     }

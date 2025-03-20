@@ -20,7 +20,6 @@ readonly class UserChecker implements UserCheckerInterface
     public function checkPreAuth(UserInterface $user): void
     {
         if ($user->isBlocked()) {
-
             throw new CustomUserMessageAccountStatusException($this->translator->trans('your_account_has_been_blocked'));
         }
 

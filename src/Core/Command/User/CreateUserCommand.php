@@ -20,7 +20,7 @@ class CreateUserCommand extends Command
     public function __construct(
         private readonly UserManager $userManager,
         private readonly EntityManagerInterface $entityManager,
-        string $name = null
+        ?string $name = null,
     ) {
         parent::__construct($name);
     }

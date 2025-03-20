@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(path: [
     'en' => '/forgot-password',
     'es' => '/contrasena-olvidada',
-    'fr' => '/mot-de-passe-oublie'
+    'fr' => '/mot-de-passe-oublie',
 ], name: 'forgot_password')]
 #[IsNotGranted('IS_AUTHENTICATED')]
 class ForgotPasswordController extends AbstractController
@@ -31,7 +31,7 @@ class ForgotPasswordController extends AbstractController
         UserRepository $userRepository,
         UserManager $userManager,
         MessageBusInterface $messageBus,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
     ): Response {
         $form = $this->createForm(ForgotPasswordType::class);
         $form->handleRequest($request);

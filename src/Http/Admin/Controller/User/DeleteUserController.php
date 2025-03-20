@@ -15,7 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: [
     'en' => '/user/{id}/delete',
     'es' => '/usuario/{id}/eliminar',
-    'fr' => '/utilisateur/{id}/supprimer'
+    'fr' => '/utilisateur/{id}/supprimer',
 ], name: 'user_delete')]
 #[IsGranted(UserVoter::DELETE, 'user')]
 class DeleteUserController extends AbstractController
@@ -24,7 +24,7 @@ class DeleteUserController extends AbstractController
         User $user,
         UserManager $userManager,
         EntityManagerInterface $entityManager,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
     ): Response {
         $userManager->anonymize($user);
         $entityManager->flush();

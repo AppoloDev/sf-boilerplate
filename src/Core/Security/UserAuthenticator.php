@@ -24,7 +24,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
     public function __construct(
         private readonly UrlGeneratorInterface $urlGenerator,
-        private readonly Security $security
+        private readonly Security $security,
     ) {
     }
 

@@ -16,7 +16,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: [
     'en' => '/user/{id}/edit',
     'es' => '/usuario/{id}/editar',
-    'fr' => '/utilisateur/{id}/modifier'
+    'fr' => '/utilisateur/{id}/modifier',
 ], name: 'user_edit')]
 #[IsGranted(UserVoter::EDIT, 'user')]
 class EditUserController extends AbstractController
@@ -25,7 +25,7 @@ class EditUserController extends AbstractController
         User $user,
         Request $request,
         EntityManagerInterface $entityManager,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
     ): Response {
         $form = $this->createForm(UserFormType::class, $user);
 

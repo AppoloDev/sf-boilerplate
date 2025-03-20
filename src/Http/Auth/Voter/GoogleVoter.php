@@ -16,7 +16,7 @@ class GoogleVoter extends AbstractVoter
         #[Autowire('%env(OAUTH_GOOGLE_CLIENT_ID)%')]
         protected readonly ?string $clientId,
         #[Autowire('%env(OAUTH_GOOGLE_CLIENT_SECRET)%')]
-        protected readonly ?string $clientSecret
+        protected readonly ?string $clientSecret,
     ) {
         parent::__construct($security);
     }

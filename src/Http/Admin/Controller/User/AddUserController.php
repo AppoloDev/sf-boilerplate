@@ -20,7 +20,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 #[Route(path: [
     'en' => '/user/add',
     'es' => '/usuario/agregar',
-    'fr' => '/utilisateur/ajouter'
+    'fr' => '/utilisateur/ajouter',
 ], name: 'user_add')]
 #[IsGranted(UserVoter::ADD)]
 class AddUserController extends AbstractController
@@ -33,7 +33,7 @@ class AddUserController extends AbstractController
         EntityManagerInterface $entityManager,
         UserManager $userManager,
         MessageBusInterface $messageBus,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
     ): Response {
         $user = (new User());
 

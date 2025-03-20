@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route(path: [
     'en' => '/users',
     'es' => '/usuarios',
-    'fr' => 'utilisateurs'
+    'fr' => 'utilisateurs',
 ], name: 'user_list')]
 #[IsGranted(UserVoter::LIST)]
 class ListUserController extends AbstractController

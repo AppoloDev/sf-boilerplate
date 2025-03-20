@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route(path: [
     'en' => '/logout',
     'es' => '/cerrar-sesion',
-    'fr' => '/deconnexion'
+    'fr' => '/deconnexion',
 ], name: 'logout')]
 class LogoutController extends AbstractController
 {

@@ -19,13 +19,13 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 
-class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationEntrypointInterface
+class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationEntryPointInterface
 {
     public function __construct(
         protected readonly ClientRegistry $clientRegistry,
         protected readonly EntityManagerInterface $entityManager,
         protected readonly UserRepository $userRepository,
-        protected readonly RouterInterface $router
+        protected readonly RouterInterface $router,
     ) {
     }
 
@@ -88,7 +88,7 @@ class GoogleAuthenticator extends OAuth2Authenticator implements AuthenticationE
         return new Response($message, Response::HTTP_FORBIDDEN);
     }
 
-    public function start(Request $request, AuthenticationException $authException = null): Response
+    public function start(Request $request, ?AuthenticationException $authException = null): Response
     {
         return new RedirectResponse(
             '/connect/', // might be the site, where users choose their oauth provider
