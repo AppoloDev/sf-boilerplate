@@ -43,7 +43,7 @@
             <twig:FormSubmit
                     form="{{ form }}"
                     deleteButtonLink="{{ user is defined and is_granted('admin_user_delete', user) ? path('admin_user_delete', {id: user.id}) :null }}"
-                    deleteSwalTitle="Supprimer cet utilisateur"
+                    deleteSwalTitle="{{ 'delete_this_user'|trans }}"
                     deleteSwalColor="red"
             />
         </div>
