@@ -66,16 +66,14 @@
         ]
     },
     "pentatrion/vite-bundle": {
-        "version": "3.1",
+        "version": "8.0",
         "recipe": {
             "repo": "github.com/symfony/recipes-contrib",
             "branch": "main",
-            "version": "1.0",
-            "ref": "33d48a1c831b2d29641175c8320e66a9f1c9911f"
+            "version": "6.5",
+            "ref": "3a6673f248f8fc1dd364dadfef4c5b381d1efab6"
         },
-        "files": [
-            "config/routes/dev/pentatrion_vite.yaml"
-        ]
+        "files": []
     },
     "phpstan/phpstan": {
         "version": "2.1",
