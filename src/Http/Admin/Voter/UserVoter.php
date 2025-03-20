@@ -15,12 +15,11 @@ class UserVoter extends AbstractVoter
     public const BLOCK = 'admin_user_block';
     public const UNBLOCK = 'admin_user_unblock';
     public const DELETE = 'admin_user_delete';
-    public const EXPORT = 'admin_user_export';
 
     protected function supports(string $attribute, mixed $subject): bool
     {
         return match ($attribute) {
-            self::LIST, self::ADD, self::EXPORT => true,
+            self::LIST, self::ADD => true,
             self::EDIT, self::BLOCK, self::UNBLOCK, self::DELETE => $subject instanceof User,
             default => false,
         };

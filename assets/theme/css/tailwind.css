@@ -18,6 +18,16 @@
     --color-appolo-900: oklch(26.33% 0.0424 197.41);
 }
 
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
 /* Plugins */
 @plugin "@tailwindcss/forms";
 

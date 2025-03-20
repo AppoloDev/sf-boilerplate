@@ -1,6 +1,4 @@
 ---
-title: "Bienvenue 🎉"
-preheader: "Bienvenue 🎉"
 bodyClass: bg-slate-50
 ---
 
@@ -10,22 +8,20 @@ bodyClass: bg-slate-50
       <tr>
         <td class="w-[552px] max-w-full">
           <div class="my-12 sm:my-8 text-center">
-              <a href="{{ url('auth_login') }}">
-                <img src="cid:logo" width="100" alt="Logo">
-              </a>
+            <a href="{{ url('auth_login') }}">
+              <img src="cid:logo" width="100" alt="Logo">
+            </a>
           </div>
 
           <table class="w-full">
             <tr>
               <td class="p-12 sm:px-6 text-base text-slate-700 bg-white rounded shadow-sm">
                 <h1 class="m-0 mb-6 text-2xl sm:leading-8 text-black font-semibold">
-                  Bonjour {{firstname}},
+                  {{ 'body.hello'|trans({'%firstname%': firstname}, 'emails', locale) }},
                 </h1>
 
                 <p class="m-0 leading-6">
-                  Pour activer votre compte sur
-                  <a href="{{ url('auth_login') }}">{{ siteTitle }}</a>
-                  , cliquez sur le lien ci-dessous. Vous serez invité à créer un mot de passe.
+                  {{ 'body.to_enable_your_account'|trans({'%siteTitle%': siteTitle, '%url%': url('auth_login')}, 'emails', locale)|raw }}
                 </p>
 
                 <x-spacer height="24px"/>
@@ -33,13 +29,13 @@ bodyClass: bg-slate-50
                 <raw> {% set link = url('auth_create_password', {token: confirmationToken}) %}</raw>
 
                 <x-button href="{{ link }}">
-                    Activer votre compte &rarr;
-                  </x-button>
+                  {{ 'body.enable_your_account'|trans({}, 'emails', locale) }} &rarr;
+                </x-button>
 
                 <x-divider space-y="32px" class="bg-slate-200"/>
 
                 <p class="m-0">
-                  À bientôt.
+                  {{ 'body.see_you_later'|trans({}, 'emails', locale) }}
                 </p>
               </td>
             </tr>

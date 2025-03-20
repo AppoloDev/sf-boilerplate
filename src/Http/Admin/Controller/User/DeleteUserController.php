@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route(path: [
     'en' => '/user/{id}/delete',
@@ -19,13 +20,16 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted(UserVoter::DELETE, 'user')]
 class DeleteUserController extends AbstractController
 {
-    public function __invoke(User $user, UserManager $userManager, EntityManagerInterface $entityManager): Response
-    {
+    public function __invoke(
+        User $user,
+        UserManager $userManager,
+        EntityManagerInterface $entityManager,
+        TranslatorInterface $translator
+    ): Response {
         $userManager->anonymize($user);
         $entityManager->flush();
 
-        // TODO: Translation
-        $this->addFlash('success', 'L\'utilisateur a été supprimé.');
+        $this->addFlash('success', $translator->trans('the_item_has_been_deleted'));
 
         return $this->redirectToRoute('admin_user_list');
     }

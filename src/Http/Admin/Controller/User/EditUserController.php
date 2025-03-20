@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route(path: [
     'en' => '/user/{id}/edit',
@@ -24,6 +25,7 @@ class EditUserController extends AbstractController
         User $user,
         Request $request,
         EntityManagerInterface $entityManager,
+        TranslatorInterface $translator
     ): Response {
         $form = $this->createForm(UserFormType::class, $user);
 
@@ -31,8 +33,7 @@ class EditUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            // TODO: Translation
-            $this->addFlash('success', 'L\'utilisateur a été modifié.');
+            $this->addFlash('success', $translator->trans('the_item_has_been_updated'));
 
             return $this->redirectToRoute('admin_user_list');
         }

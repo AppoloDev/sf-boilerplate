@@ -15,6 +15,7 @@ use Symfony\Component\Messenger\Exception\ExceptionInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route(path: [
     'en' => '/user/add',
@@ -31,7 +32,8 @@ class AddUserController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         UserManager $userManager,
-        MessageBusInterface $messageBus
+        MessageBusInterface $messageBus,
+        TranslatorInterface $translator
     ): Response {
         $user = (new User());
 
@@ -44,8 +46,7 @@ class AddUserController extends AbstractController
 
             $messageBus->dispatch(new AccountCreationEmailMessage($user));
 
-            // TODO: Translation
-            $this->addFlash('success', 'L\'utilisateur a été ajouté.');
+            $this->addFlash('success', $translator->trans('the_item_has_been_saved'));
 
             return $this->redirectToRoute('admin_user_list');
         }

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route(path: [
     'en' => '/my-account',
@@ -27,6 +28,7 @@ class EditAccountController extends AbstractController
         Request $request,
         EntityManagerInterface $entityManager,
         UserManager $userManager,
+        TranslatorInterface $translator,
         #[CurrentUser] UserInterface $user
     ): Response {
         $form = $this->createForm(AccountFormType::class, $user);
@@ -37,8 +39,7 @@ class EditAccountController extends AbstractController
                 $userManager->upgradePassword($user);
             }
 
-            // TODO: Translation
-            $this->addFlash('success', 'Les informations ont été enregistrées.');
+            $this->addFlash('success', $translator->trans('the_item_has_been_updated'));
             $entityManager->flush();
         }
 

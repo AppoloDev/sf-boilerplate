@@ -1,11 +1,10 @@
-{# TODO: Translation #}
 {% extends '_layout/admin.html.twig' %}
 
-{% block title %}Mon compte{% endblock %}
+{% block title %}{{ 'my_account'|trans }}{% endblock %}
 
 {% block breadcrumb %}
     <twig:Breadcrumb items="{{ [
-        {path: path('admin_dashboard'), label: 'Accueil'},
+        {path: path('admin_dashboard'), label: 'home'|trans},
         {path: null, label: block('title')},
     ] }}"/>
 {% endblock %}

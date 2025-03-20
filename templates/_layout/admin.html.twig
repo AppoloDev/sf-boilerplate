@@ -1,13 +1,13 @@
 {% extends '@SFToolbox/layouts/sidebar.html.twig' %}
 
 {% block sidebar_menu %}
-    <ul class="space-y-0.5">
+    <ul class="space-y-0.5 mt-4">
         {% if is_granted('admin_user_list') %}
             <li>
                 <a class="flex items-center gap-x-3 py-2 px-2.5 hover:bg-{{ themeColor }}-600 text-sm text-white rounded-md"
                    href="{{ path('admin_user_list') }}">
-                    <twig:ux:icon name="fa6-solid:user" />
-                    Utilisateurs
+                    <twig:ux:icon name="fa6-solid:user"  height="16" width="16" />
+                    {{ 'users'|trans }}
                 </a>
             </li>
         {% endif %}

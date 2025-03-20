@@ -1,3 +1,6 @@
 @import "./tailwind.css";
 
 @import './components/password-toggle.css';
+
+@import "../../../vendor/appolodev/sf-toolbox/assets/css/components/_tomselect.css";
+@import "../../../vendor/appolodev/sf-toolbox/assets/css/components/_vich.css";

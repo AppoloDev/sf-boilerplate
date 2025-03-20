@@ -20,10 +20,9 @@ class UserFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // TODO: Translation
         $builder
             ->add('firstname', TextType::class, [
-                'label' => 'Prénom',
+                'label' => 'firstname',
                 'required' => true,
                 'empty_data' => '',
                 'constraints' => [
@@ -31,7 +30,7 @@ class UserFormType extends AbstractType
                 ],
             ])
             ->add('lastname', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'lastname',
                 'required' => true,
                 'attr' => [
                     'style' => 'text-transform: uppercase;',
@@ -42,21 +41,21 @@ class UserFormType extends AbstractType
                 ],
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => 'email',
                 'required' => true,
                 'empty_data' => '',
                 'constraints' => [
                     new NotBlank(),
                     new Email(),
                 ],
-                'help' => 'L\'email sera <strong>utilisé</strong> comme identifiant pour se connecter',
+                'help' => 'email_will_be_used_as_your_login',
                 'help_html' => true,
             ])
             ->add('roles', CardRadioType::class, [
-                'label' => 'Rôles',
+                'label' => 'roles',
                 'choices' => [
-                    'Administrateur' => 'ROLE_ADMIN',
-                    'Utilisateur' => 'ROLE_USER',
+                    'administrator' => 'ROLE_ADMIN',
+                    'user' => 'ROLE_USER',
                 ],
                 'required' => true,
                 'multiple' => false,
@@ -65,13 +64,13 @@ class UserFormType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer',
+                'label' => 'save',
             ])
         ;
 
         $builder->get('lastname')->addModelTransformer(new UppercaseTransformer());
         $builder->get('roles')->addModelTransformer(
-            new ArrayToStringTransformer(['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_USER'])
+            new ArrayToStringTransformer(['ROLE_ADMIN', 'ROLE_USER'])
         )
         ;
     }

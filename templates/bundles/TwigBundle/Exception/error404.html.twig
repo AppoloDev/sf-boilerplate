@@ -1,8 +1,7 @@
-{# TODO: Translation #}
 {% extends '@SFToolbox/layouts/error.html.twig' %}
 
 {% block message %}
     <p>
-        La page que vous recherchez n'existe plus ou a été déplacée.
+        {{ 'this_page_no_long_exists'|trans }}
     </p>
 {% endblock %}

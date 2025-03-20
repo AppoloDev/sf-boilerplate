@@ -17,10 +17,9 @@ class AccountFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // TODO: Translation
         $builder
             ->add('firstname', TextType::class, [
-                'label' => 'Prénom',
+                'label' => 'firstname',
                 'required' => true,
                 'empty_data' => '',
                 'constraints' => [
@@ -28,7 +27,7 @@ class AccountFormType extends AbstractType
                 ],
             ])
             ->add('lastname', TextType::class, [
-                'label' => 'Nom',
+                'label' => 'lastname',
                 'required' => true,
                 'attr' => [
                     'class' => 'uppercase',
@@ -39,7 +38,7 @@ class AccountFormType extends AbstractType
                 ],
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Email',
+                'label' => 'email',
                 'required' => true,
                 'empty_data' => '',
                 'constraints' => [
@@ -47,18 +46,21 @@ class AccountFormType extends AbstractType
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                'label' => 'Mot de passe',
-                'help' => 'Le mot de passe doit comporter au moins 8 caractères. Laissez ce champ vide afin de ne pas le modifier.',
+                'label' => 'password',
+                'help' => 'password_min_length_or_empty',
+                'toggle' => true,
+                'hidden_label' => null,
+                'visible_label' => null,
                 'required' => false,
                 'constraints' => [
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Votre mot de passe doit comporter au moins 8 caractères.',
+                        'minMessage' => 'form.constraint.password_min_length',
                     ]),
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer',
+                'label' => 'save',
             ])
         ;
     }

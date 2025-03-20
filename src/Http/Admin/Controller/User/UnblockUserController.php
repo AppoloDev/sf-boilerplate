@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 #[Route(path: [
     'en' => '/user/{id}/unblock',
@@ -18,13 +19,16 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[IsGranted(UserVoter::UNBLOCK, 'user')]
 class UnblockUserController extends AbstractController
 {
-    public function __invoke(User $user, EntityManagerInterface $entityManager): Response
+    public function __invoke(
+        User $user,
+        EntityManagerInterface $entityManager,
+        TranslatorInterface $translator
+    ): Response
     {
         $user->setBlocked(false);
         $entityManager->flush();
 
-        // TODO: Translation
-        $this->addFlash('success', 'L\'utilisateur a été débloqué.');
+        $this->addFlash('success', $translator->trans('the_item_has_been_unblocked'));
 
         return $this->redirectToRoute('admin_user_list');
     }

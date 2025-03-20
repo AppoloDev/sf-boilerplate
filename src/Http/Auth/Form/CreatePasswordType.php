@@ -28,8 +28,8 @@ class CreatePasswordType extends AbstractType
                 'first_options' => [
                     'label' => 'password',
                     'toggle' => true,
-                    'hidden_label' => '',
-                    'visible_label' => '',
+                    'hidden_label' => null,
+                    'visible_label' => null,
                 ],
                 'second_options' => [
                     'label' => 'password_repeat',

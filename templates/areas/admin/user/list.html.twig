@@ -1,11 +1,10 @@
-{# TODO: Translation #}
 {% extends '_layout/admin.html.twig' %}
 
-{% block title %}Liste des utilisateurs{% endblock %}
+{% block title %}{{ 'list_of_users'|trans }}{% endblock %}
 
 {% block breadcrumb %}
     <twig:Breadcrumb items="{{ [
-        {path: path('admin_dashboard'), label: 'Accueil'},
+        {path: path('admin_dashboard'), label: 'home'|trans},
         {path: null, label: block('title')},
     ]}}"/>
 {% endblock %}
@@ -14,29 +13,19 @@
     {% component TableList with {
         headerTitle: block('title'),
         tableColumns: [
-            knp_pagination_sortable(pagination, 'Nom', 'u.firstname'),
-            knp_pagination_sortable(pagination, 'Email', 'u.email'),
-            knp_pagination_sortable(pagination, 'Statut', 'u.blocked'),
+            knp_pagination_sortable(pagination, 'name'|trans, 'u.firstname'),
+            knp_pagination_sortable(pagination, 'email'|trans, 'u.email'),
+            knp_pagination_sortable(pagination, 'status'|trans, 'u.blocked'),
             ''
         ],
         pagination: pagination,
     } %}
         {% block header_actions %}
             <div class="flex gap-4 items-center">
-                {% if is_granted('admin_user_export') %}
-                    <twig:ButtonLink
-                            link="{{ path('admin_user_export', {q: app.request.query.get('q')}) }}"
-                            label="Exporter"
-                            mode="ghost"
-                            color="{{ themeColor }}"
-                            icon="{{ ux_icon('fa6-solid:download') }}"
-                    />
-                {% endif %}
-
                 {% if is_granted('admin_user_add') %}
                     <twig:ButtonLink
                             link="{{ path('admin_user_add') }}"
-                            label="Ajouter"
+                            label="{{ 'add'|trans }}"
                             color="{{ themeColor }}"
                             icon="{{ ux_icon('fa6-solid:plus') }}"
                     />
@@ -45,12 +34,12 @@
         {% endblock %}
 
         {% block emptyList %}
-            <twig:ListEmpty description="Essayez d'ajouter un nouvel utilisateur.">
+            <twig:ListEmpty description="{{ 'try_to_add_a_new_item'|trans }}">
                 <twig:block name="ListEmptyButton">
                     <twig:ButtonLink
                             allowDisplay="{{ is_granted('admin_user_add') }}"
                             icon="{{ ux_icon('fa6-solid:plus') }}"
-                            label="Ajouter"
+                            label="{{ 'add'|trans }}"
                             link="{{ path('admin_user_add') }}"
                             color="{{ themeColor }}"
                     />
