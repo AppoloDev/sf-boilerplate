@@ -9,7 +9,7 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "appolodev/sf-toolbox": "^3.3",
+        "appolodev/sf-toolbox": "^3.4",
         "doctrine/doctrine-bundle": "^2.10",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^3.3",
