@@ -1,24 +1,36 @@
-version: '3'
+version: '3.8'
 
 services:
+    app:
+        image: franken-php
+        ports:
+            - "8001:80"
+            - "8000:443"
+        volumes:
+            - .:/app
+        working_dir: /app
+        networks:
+            - dev
+
     mysql:
         image: mysql:8.3.0
         restart: unless-stopped
         environment:
             MYSQL_ROOT_PASSWORD: root
         ports:
-            - 3306:3306
+            - "3306:3306"
         volumes:
             - ~/docker/mysql8/:/var/lib/mysql/
         networks:
             - dev
+
     phpmyadmin:
         image: phpmyadmin
         restart: always
         depends_on:
             - mysql
         ports:
-            - 8080:80
+            - "8080:80"
         environment:
             PMA_HOST: mysql
             PMA_USER: root
@@ -26,31 +38,15 @@ services:
             UPLOAD_LIMIT: 300M
         networks:
             - dev
-    php:
-        image: php-83
-        command: "symfony server:start"
-        restart: unless-stopped
-        volumes:
-            - ./:/var/www/html/
-        ports:
-            - 8000:8000
-        networks:
-            - dev
-    messenger:
-        image: php-83
-        command: "php bin/console messenger:consume async --limit=2"
-        restart: unless-stopped
-        volumes:
-            - ./:/var/www/html/
-        networks:
-            - dev
+
     maildev:
         image: maildev/maildev
         restart: unless-stopped
         ports:
-            - 1080:1080
-            - 1025:1025
+            - "1080:1080"
+            - "1025:1025"
         networks:
             - dev
+
 networks:
     dev:
